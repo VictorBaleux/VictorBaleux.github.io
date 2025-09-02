@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="fr" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Votre Nom — Portfolio</title>
+  <meta name="description" content="Portfolio simple d'étudiant : projets, compétences et contact. Modèle léger, responsive et accessible." />
+
+  <!-- Open Graph / SEO de base -->
+  <meta property="og:title" content="Votre Nom — Portfolio" />
+  <meta property="og:description" content="Projets, compétences et contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/1200/630" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
+
+  <style>
+    /* ===== Design tokens ===== */
+    :root {
+      --bg: #ffffff;
+      --text: #101828; /* gris anthracite */
+      --muted: #667085;
+      --card: #f2f4f7;
+      --border: #e4e7ec;
+      --brand: #3b82f6; /* bleu */
+      --brand-2: #22c55e; /* vert */
+      --shadow: 0 10px 25px rgba(16, 24, 40, 0.08);
+      --radius: 16px;
+      --max: 1100px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f16;
+        --text: #e6e6e6;
+        --muted: #98a2b3;
+        --card: #121826;
+        --border: #1f2a3a;
+        --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      }
+    }
+    [data-theme="light"] { --bg:#ffffff; --text:#101828; --muted:#667085; --card:#f2f4f7; --border:#e4e7ec; }
+    [data-theme="dark"]  { --bg:#0b0f16; --text:#e6e6e6; --muted:#98a2b3; --card:#121826; --border:#1f2a3a; }
+
+    /* ===== Base ===== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg); color: var(--text);
+      line-height: 1.6;
+    }
+    .container { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; display: block; border-radius: calc(var(--radius) - 4px); }
+    section { padding: 72px 0; }
+    h1,h2,h3 { line-height: 1.2; margin: 0 0 12px; }
+    h2 { font-size: clamp(1.4rem, 1rem + 1.6vw, 2rem); }
+    p { margin: 0 0 12px; color: var(--muted); }
+    .chip { display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px; font-size:.9rem; background:transparent; }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background: var(--text); color: var(--bg); box-shadow: var(--shadow); cursor:pointer; }
+    .btn.secondary { background: transparent; color: var(--text); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+    /* ===== Header / Nav ===== */
+    .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+    .skip-link:focus { left: 12px; top:12px; width:auto; height:auto; background: var(--text); color: var(--bg); padding:8px 12px; border-radius: 8px; z-index:999; }
+
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(8px); background: color-mix(in oklab, var(--bg), transparent 12%); border-bottom: 1px solid var(--border); }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: 10px 0; }
+    .brand { display:flex; align-items:center; gap:.75rem; font-weight:600; }
+    .brand .logo { width: 36px; height: 36px; display:grid; place-items:center; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; font-weight:700; }
+    nav ul { list-style:none; display:flex; gap: 18px; padding:0; margin:0; }
+    nav a { color: var(--text); opacity: .8; font-weight: 500; }
+    nav a[aria-current="page"], nav a:hover { opacity: 1; }
+    .nav-cta { display:flex; gap: .5rem; align-items:center; }
+
+    /* ===== Hero ===== */
+    .hero { padding: 96px 0 56px; background: radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--brand) 20%, transparent 90%), transparent 60%),
+                                       radial-gradient(1000px 400px at 90% -20%, color-mix(in oklab, var(--brand-2) 22%, transparent 90%), transparent 60%); }
+    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items:center; }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; padding:6px 10px; border:1px dashed var(--border); border-radius:999px; margin-bottom: 12px; font-size:.9rem; }
+    .headline { font-size: clamp(1.8rem, 1rem + 3vw, 3rem); letter-spacing: -0.02em; }
+    .subhead { font-size: 1.05rem; }
+    .card { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+
+    /* ===== Grids ===== */
+    .grid { display:grid; gap: 16px; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    @media (max-width: 900px) { .hero-grid{ grid-template-columns: 1fr; } .grid-3{ grid-template-columns: 1fr; } .grid-2{ grid-template-columns: 1fr; } }
+
+    .project { display:flex; flex-direction:column; gap:12px; }
+    .project .tags{ margin-top:4px; }
+    .project a.btn { align-self: flex-start; }
+
+    /* ===== Timeline ===== */
+    .timeline { position: relative; margin-left: 10px; }
+    .timeline::before { content:""; position:absolute; left: 10px; top:0; bottom:0; width:2px; background: var(--border); }
+    .t-item { position:relative; padding-left: 32px; margin: 18px 0; }
+    .t-item::before { content:""; position:absolute; left:2px; top: 6px; width:18px; height:18px; border-radius:999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+
+    /* ===== Footer ===== */
+    footer { border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); }
+
+    /* Focus styles */
+    :where(a, button, .btn) { transition: all .2s ease; }
+    :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
+  </style>
+
+  <script>
+    // Évite le "flash" de thème en lisant le stockage AVANT le rendu
+    (function(){
+      try {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch(_){}
+    })();
+  </script>
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller au contenu</a>
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo" aria-hidden="true">VN</div> <span>Votre Nom</span></div>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#parcours">Parcours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn secondary" id="themeToggle" aria-label="Basculer le thème">🌓</button>
+        <a class="btn" href="./CV.pdf" download>📄 Télécharger le CV</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge" aria-label="Statut">🎓 Étudiant · À la recherche d'un stage</div>
+          <h1 class="headline">Bonjour, je suis <strong>Votre Nom</strong> — étudiant en <strong>votre spécialité</strong>.</h1>
+          <p class="subhead">Je conçois des projets concrets en <em>développement, data, maths appliquées ou votre domaine</em>. J'aime créer des interfaces soignées et résoudre des problèmes réels.</p>
+          <div style="display:flex; gap:.5rem; margin-top:14px;">
+            <a class="btn" href="#projets">Voir mes projets</a>
+            <a class="btn secondary" href="#contact">Me contacter</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>À propos</h2>
+          <p>Actuellement en Master (M1/M2), disponible pour un stage à partir de <strong>janvier</strong>. J'apprends vite, j'aime le clean code et les modèles mathématiques bien posés.</p>
+          <p>Intérêts : optimisation, visualisation, IA, systèmes distribués — adaptez selon votre profil.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="container">
+      <h2>Projets sélectionnés</h2>
+      <p>Une courte sélection de travaux scolaires et personnels. Lien GitHub et démo si dispo.</p>
+      <div class="grid grid-3" style="margin-top:16px;">
+        <!-- Projet 1 -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/p1/800/500" alt="Capture du projet 1" loading="lazy" />
+          <div>
+            <h3>Simulateur convection–diffusion 1D</h3>
+            <p>Schéma EF P1/P2, estimation de convergence, visualisation interactive.</p>
+            <div class="tags">
+              <span class="chip">FreeFem++</span>
+              <span class="chip">Numérique</span>
+              <span class="chip">PDE</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:.5rem;">
+            <a class="btn secondary" href="#" aria-label="Voir le code du projet 1"></span>Voir le code</a>
+            <a class="btn" href="#" aria-label="Voir la démo du projet 1">Démo</a>
+          </div>
+        </article>
+        <!-- Projet 2 -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/p2/800/500" alt="Capture du projet 2" loading="lazy" />
+          <div>
+            <h3>Tableau de bord d'analyse de données</h3>
+            <p>Exploration de datasets, KPIs et graphiques interactifs.</p>
+            <div class="tags">
+              <span class="chip">Python</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Plotly</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:.5rem;">
+            <a class="btn secondary" href="#">Voir le code</a>
+            <a class="btn" href="#">Démo</a>
+          </div>
+        </article>
+        <!-- Projet 3 -->
+        <article class="card project">
+          <img src="https://picsum.photos/seed/p3/800/500" alt="Capture du projet 3" loading="lazy" />
+          <div>
+            <h3>Site web portfolio minimal</h3>
+            <p>Ce site ! One‑page responsive avec thème clair/sombre.</p>
+            <div class="tags">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">Accessibilité</span>
+            </div>
+          </div>
+          <div style="display:flex; gap:.5rem;">
+            <a class="btn secondary" href="#">Voir le code</a>
+            <a class="btn" href="#">Démo</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences" class="container">
+      <h2>Compétences</h2>
+      <p>Adaptez la liste à votre stack et à vos cours.</p>
+      <div style="margin-top:8px;">
+        <span class="chip">C++</span>
+        <span class="chip">Python</span>
+        <span class="chip">FreeFem++</span>
+        <span class="chip">Git / GitHub</span>
+        <span class="chip">HTML / CSS</span>
+        <span class="chip">LaTeX</span>
+        <span class="chip">Méthodes Numériques</span>
+        <span class="chip">Optimisation</span>
+      </div>
+    </section>
+
+    <!-- Parcours -->
+    <section id="parcours" class="container">
+      <h2>Parcours</h2>
+      <div class="timeline" aria-label="Frise chronologique de mes expériences">
+        <div class="t-item">
+          <h3>Master MANU — Modélisation & Analyse Numérique</h3>
+          <p>Université XYZ · 2024–2026</p>
+          <p>Matières clés : EDP, EF, probas, optimisation, calcul scientifique.</p>
+        </div>
+        <div class="t-item">
+          <h3>Stage — Sujet à définir</h3>
+          <p>De janvier à juin 2026</p>
+          <p>Objectifs : mettre en pratique les méthodes numériques sur des cas réels.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <h2>Contact</h2>
+      <p>N'hésitez pas à m'écrire pour un stage, une alternance ou un projet.</p>
+      <div style="display:flex; gap:.5rem; margin-top:10px; flex-wrap: wrap;">
+        <a class="btn" href="mailto:votre.email@example.com" aria-label="Envoyer un email">✉️ Email</a>
+        <a class="btn secondary" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">in LinkedIn</a>
+        <a class="btn secondary" href="https://github.com" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">🐱 GitHub</a>
+        <button class="btn secondary" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Votre Nom — Fait avec HTML/CSS/JS. Dernière mise à jour manuelle.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Thème clair/sombre avec sauvegarde
+    const btn = document.getElementById('themeToggle');
+    btn?.addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      let next;
+      if (current === 'dark') next = 'light';
+      else if (current === 'light') next = 'dark';
+      else next = matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch(_){}
+    });
+
+    // Copier l'email
+    const copyBtn = document.getElementById('copyEmail');
+    copyBtn?.addEventListener('click', async () => {
+      const email = 'votre.email@example.com';
+      try { await navigator.clipboard.writeText(email); copyBtn.textContent = 'Copié ✔'; setTimeout(()=>copyBtn.textContent='Copier l\'email', 1500); } catch(_){}
+    });
+
+    // Année courante
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
