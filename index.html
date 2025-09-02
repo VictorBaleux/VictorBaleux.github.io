@@ -253,10 +253,10 @@
       <h2>Contact</h2>
       <p>N'hésitez pas à m'écrire pour un stage, une alternance ou un projet.</p>
       <div style="display:flex; gap:.5rem; margin-top:10px; flex-wrap: wrap;">
-        <a class="btn" href="mailto:votre.email@example.com" aria-label="Envoyer un email">✉️ Email</a>
-        <a class="btn secondary" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">in LinkedIn</a>
-        <a class="btn secondary" href="https://github.com" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">🐱 GitHub</a>
+        <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email">✉️ Email</a>
         <button class="btn secondary" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
+        <a class="btn secondary" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">in LinkedIn</a>
+        <a class="btn secondary" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">🐱 GitHub</a>
       </div>
     </section>
   </main>
@@ -284,7 +284,7 @@
     // Copier l'email
     const copyBtn = document.getElementById('copyEmail');
     copyBtn?.addEventListener('click', async () => {
-      const email = 'votre.email@example.com';
+      const email = 'victor.baleux1@orange.fr';
       try { await navigator.clipboard.writeText(email); copyBtn.textContent = 'Copié ✔'; setTimeout(()=>copyBtn.textContent='Copier l\'email', 1500); } catch(_){}
     });
 
