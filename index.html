@@ -139,7 +139,6 @@
       .nav{ flex-wrap: wrap; gap: 8px 12px; }
       nav{ order: 3; width: 100%; }
       nav ul{ flex-wrap: wrap; justify-content: center; gap: 12px; }
-      .nav-cta a.btn[download]{ display:none; } /* cache le gros bouton CV pour éviter le dépassement */
       .btn{ padding:8px 12px; }
       .brand .logo{ width:30px; height:30px; border-radius:10px; }
     }
@@ -177,8 +176,8 @@
         </ul>
       </nav>
       <div class="nav-cta">
-        <button class="btn secondary" id="themeToggle" aria-label="Basculer le thème">🌓</button>
-        <a class="btn" href="materials/CV.pdf" download>📄 Télécharger le CV</a>
+        <button class="btn" id="themeToggle" aria-label="Basculer le thème">🌓</button>
+        <a class="btn" href="materials/CV.pdf" download>📄 CV</a>
       </div>
     </div>
   </header>
@@ -189,10 +188,10 @@
       <div class="container hero-grid">
         <div>
           <h1 class="headline"><strong>Victor Baleux, Mathématicien</strong></h1>
-          <p class="subhead">Spécialiste des equations differentielles, cryptographie, modelisation et bien plus !</p>
+          <p class="subhead">Du théorème au code, sans perte de rigueur.</p>
           <div style="display:flex; gap:.5rem; margin-top:14px;">
             <a class="btn" href="#projets">Voir mes projets</a>
-            <a class="btn secondary" href="#contact">Me contacter</a>
+            <a class="btn" href="#contact">Me contacter</a>
           </div>
         </div>
         <div class="card">
@@ -221,7 +220,7 @@
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download>📄 Télécharger</a>
+            <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download>Télécharger</a>
             <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL">
               <img src="assets/HAL_LOGO.svg.png" alt="HAL — science ouverte">
             </a>
@@ -240,7 +239,7 @@
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn" href="materials/Memoire_M1.pdf" download>📄 Télécharger</a>
+            <a class="btn" href="materials/Memoire_M1.pdf" download>Télécharger</a>
           </div>
         </article>
 
@@ -257,7 +256,9 @@
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn secondary" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener" aria-label="Voir dans GitHub">Voir le code</a>
+            <a class="btn secondary img" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener" aria-label="Ouvrir sur GitHub">
+              <img src="assets/github.png" alt="GitHub">
+            </a>
             <a class="btn" href="#">Démo :)</a>
           </div>
         </article>
@@ -361,9 +362,13 @@
       <p>N'hésitez pas à m'écrire pour un stage, un poste ou un projet.</p>
       <div style="display:flex; gap:.5rem; margin-top:10px; flex-wrap: wrap;">
         <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email">✉️ Email</a>
-        <button class="btn secondary" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
-        <a class="btn secondary" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">in LinkedIn</a>
-        <a class="btn secondary" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">🐱 GitHub</a>
+        <button class="btn" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
+        <a class="btn secondary img" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">
+          <img src="assets/github.png" alt="GitHub">
+        </a>
+        <a class="btn secondary img" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">
+          <img src="assets/Linkedin-Logo.png" alt="LinkedIn">
+        </a>
       </div>
     </section>
   </main>
