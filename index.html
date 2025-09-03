@@ -42,13 +42,14 @@
 
     /* ===== Base ===== */
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth;   scroll-padding-top: 72px;
+}
     body {
       margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       background: var(--bg); color: var(--text);
-      line-height: 1.6;
+      line-height: 1.6; overflow-x: hidden;
     }
-    .container { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
+    .container { max-width: var(--max); margin-inline: auto; padding-inline: 1rem; }
     a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
     img { max-width: 100%; height: auto; display: block; border-radius: calc(var(--radius) - 4px); }
@@ -73,7 +74,7 @@
     .skip-link { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
     .skip-link:focus { left: 12px; top:12px; width:auto; height:auto; background: var(--text); color: var(--bg); padding:8px 12px; border-radius: 8px; z-index:999; }
 
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(8px); background: color-mix(in oklab, var(--bg), transparent 12%); border-bottom: 1px solid var(--border); }
+    header { position: sticky; position: -webkit-sticky; top: 0; z-index: 1000; -webkit-backdrop-filter: saturate(180%) blur(8px); backdrop-filter: saturate(180%) blur(8px); background: color-mix(in oklab, var(--bg), transparent 12%); border-bottom: 1px solid var(--border); }
     .nav { display:flex; align-items:center; justify-content:space-between; padding: 10px 0; }
     .brand { display:flex; align-items:center; gap:.75rem; font-weight:600; }
     .brand .logo { width: 36px; height: 36px; display:grid; place-items:center; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; font-weight:700; }
@@ -132,6 +133,17 @@
     .timeline::before { content:""; position:absolute; left: 10px; top:0; bottom:0; width:2px; background: var(--border); }
     .t-item { position:relative; padding-left: 32px; margin: 18px 0; }
     .t-item::before { content:""; position:absolute; left:2px; top: 6px; width:18px; height:18px; border-radius:999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+
+    
+    @media (max-width: 720px){
+      .nav{ flex-wrap: wrap; gap: 8px 12px; }
+      nav{ order: 3; width: 100%; }
+      nav ul{ flex-wrap: wrap; justify-content: center; gap: 12px; }
+      .nav-cta a.btn[download]{ display:none; } /* cache le gros bouton CV pour éviter le dépassement */
+      .btn{ padding:8px 12px; }
+      .brand .logo{ width:30px; height:30px; border-radius:10px; }
+    }
+
 
     /* ===== Footer ===== */
     footer { border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); }
@@ -234,10 +246,10 @@
 
         <!-- Projet 3 -->
         <article class="card project">
-          <img src="https://picsum.photos/seed/p3/800/500" alt="Capture du projet 3" loading="lazy" />
+          <img src="assets/mise_en_abime.png" alt="Capture du projet 3" loading="lazy" />
           <div>
             <h3>Site web portfolio minimal</h3>
-            <p>Ce site ! One‑page responsive avec thème clair/sombre.</p>
+            <p>Ce site ! One‑page avec thème clair/sombre.</p>
             <div class="tags">
               <span class="chip">HTML</span>
               <span class="chip">CSS</span>
@@ -261,8 +273,8 @@
           <ul>
             <li><strong>EDP & calcul scientifique</strong> : Analyse des EDP (1→3), analyse numérique des EDP, modélisation numérique, estimations a posteriori, problèmes inverses</li>
             <li><strong>Optimisation</strong> : optimisation convexe</li>
-            <li><strong>Analyse</strong> : analyse fonctionnelle, mesure–intégration–Fourier, calcul différentiel & EDO</li>
-            <li><strong>Algèbre & géométrie</strong> : algèbre (1–2), groupes & anneaux, groupes & algèbres de Lie, géométrie différentielle, topologie (dont topologie algébrique)</li>
+            <li><strong>Analyse</strong> :analyse complexe, analyse fonctionnelle, mesure–intégration–Fourier, calcul différentiel & EDO</li>
+            <li><strong>Algèbre & géométrie</strong> : algèbre (1–2), groupes & anneaux, groupes & algèbres de Lie, géométrie différentielle, topologie (dont topologie algébrique), théorie des corps, cryptographie</li>
             <li><strong>Graphes</strong> : notions avancées (Kuratowski, conjecture de Heawood)</li>
             <li><strong>Mécanique appliquée</strong> : milieux continus, mécanique des fluides</li>
           </ul>
@@ -273,7 +285,7 @@
           <ul>
             <li><strong>Langages</strong> : C/C++ (dont C++ avancé), Python</li>
             <li><strong>Écosystème scientifique</strong> : SageMath, MATLAB, FreeFem++, LaTeX</li>
-            <li><strong>Dev & outillage</strong> : Git/GitHub, HTML/CSS (accessibilité)</li>
+            <li><strong>Dev & outillage</strong> : Git/GitHub, HTML/CSS</li>
             <li><strong>Numérique pour les EDP</strong> : méthodes numériques, modélisation & simulation</li>
           </ul>
         </dd>
@@ -346,7 +358,7 @@
     <!-- Contact -->
     <section id="contact" class="container">
       <h2>Contact</h2>
-      <p>N'hésitez pas à m'écrire pour un stage, une alternance ou un projet.</p>
+      <p>N'hésitez pas à m'écrire pour un stage, un poste ou un projet.</p>
       <div style="display:flex; gap:.5rem; margin-top:10px; flex-wrap: wrap;">
         <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email">✉️ Email</a>
         <button class="btn secondary" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
