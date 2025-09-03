@@ -58,7 +58,14 @@
     p { margin: 0 0 12px; color: var(--muted); }
     .chip { display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px; font-size:.9rem; background:transparent; }
     .btn { display:inline-flex; align-items:center; gap:.5rem; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background: var(--text); color: var(--bg); box-shadow: var(--shadow); cursor:pointer; }
+    /* Bouton HAL : fond blanc figé (indépendant du thème) */
+    .btn.btn-icon{
+      background: #e6e6e6;          /* blanc permanent */
+      color: #101828;            /* texte foncé lisible */
+      border: 1px solid #e4e7ec; /* même bordure que le thème clair */
+    }
     .btn.secondary { background: transparent; color: var(--text); }
+    .btn.secondary.img{ height: 45px; width: 150px; background: #e6e6e6;}
     .btn:hover { transform: translateY(-1px); }
     .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
 
@@ -177,8 +184,9 @@
           </div>
           <div style="display:flex; gap:.5rem;">
             <a class="btn" href="./Topographie_ancienne_GABIAN.pdf" download>📄 Télécharger</a>
-            <a class="btn secondary btn-icon" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL">
+            <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL">
               <img src="assets/HAL_LOGO.svg.png" alt="HAL — science ouverte">
+            </a>
           </div>
         </article>
 
@@ -187,7 +195,7 @@
           <img src="assets/Image_memoire.PNG" alt="Aperçu du projet 2" loading="lazy" />
           <div>
             <h3>Théoreme de Kuratowski et conjecture de Heawood</h3>
-            <p>Mémoire de M1 en mathématiques fondamentales</p>
+            <p>Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
             <div class="tags">
               <span class="chip">Théories des graphes</span>
               <span class="chip">LaTeX</span>
