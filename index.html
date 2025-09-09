@@ -59,8 +59,7 @@
     .chip { display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px; font-size:.9rem; background:transparent; }
     .btn { display:inline-flex; align-items:center; gap:.5rem; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background: var(--text); color: var(--bg); box-shadow: var(--shadow); cursor:pointer; }
     .btn.btn-icon{ background:#e6e6e6; color:#101828; border:1px solid #e4e7ec; }
-    .btn.secondary { background: transparent; color: var(--text); }
-    .btn.secondary.img{ height: 45px; width: 150px; background: #e6e6e6;}
+    .btn.secondary.img{ height: 50px; width: 150px; }
     .btn:hover { transform: translateY(-1px); }
     .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
 
@@ -162,6 +161,100 @@
       } catch(_){}
     })();
   </script>
+
+<style>
+
+/* MIX6: base + correctifs + date chip */
+.proj-MIX2 .proj-item summary{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr);
+  align-items:center;
+  gap:12px;
+  width:100%;
+}
+.proj-MIX2 .proj-thumb{width:72px; height:48px; object-fit:cover; border-radius:8px; border:1px solid var(--border); flex-shrink:0;}
+.proj-MIX2 .proj-head{display:flex; flex-direction:column; gap:4px; min-width:0;}
+.proj-MIX2 .proj-title{overflow-wrap:anywhere; word-break:break-word;}
+.proj-MIX2 .proj-meta{color:var(--muted); display:flex; align-items:center; flex-wrap:wrap; gap:.4rem;}
+
+/* Date style */
+.proj-date{display:inline-block; padding:.1rem .45rem; border-radius:999px; border:1px solid var(--border); background:var(--card); font-size:.92rem; line-height:1.2; font-variant-numeric:tabular-nums;}
+
+/* Split layout (image gauche) */
+.proj-MIX2 .proj-split{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start; margin-top:.5rem;}
+.proj-MIX2 .proj-actions{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem;}
+.proj-MIX2 .proj-thumb.as-large{width:100% !important; height:auto !important; border-radius:12px; border:1px solid var(--border); object-fit:cover;}
+
+/* Quand c'est ouvert, on laisse le titre prendre toute la largeur */
+.proj-MIX2 .proj-item[open] summary{ grid-template-columns: 1fr; }
+
+@media (max-width: 900px){
+  .proj-MIX2 .proj-split{ grid-template-columns:1fr; }
+}
+
+</style>
+
+<style>
+
+/* --- Variant: ACCENT (carte + liseré dégradé à gauche) --- */
+.proj-MIX2 .proj-item{
+  position: relative;
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px 12px 12px 16px;
+  margin: 18px 0;
+}
+.proj-MIX2 .proj-item::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width: 4px;
+  border-radius: var(--radius) 0 0 var(--radius);
+  background: linear-gradient(180deg, var(--brand), var(--brand-2));
+}
+.proj-MIX2 .proj-item summary{ padding: 6px; }
+.proj-MIX2 .proj-body{ margin-top: .5rem; }
+
+</style>
+
+<style>
+
+/* THEME-AWARE LANG BUTTON OVERRIDE */
+.lang-select, .lang-toggle, button[data-i18n="switch_lang"]{
+  appearance:none; -webkit-appearance:none; -moz-appearance:none;
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.5rem; padding:10px 16px; border-radius:999px;
+  border:1px solid var(--border); box-shadow: var(--shadow);
+  font-weight:700; line-height:1; cursor:pointer;
+  transition: transform .2s ease;
+}
+.lang-select:hover, .lang-toggle:hover, button[data-i18n="switch_lang"]:hover{ transform: translateY(-1px); }
+
+/* Light theme: black pill */
+[data-theme="light"] .lang-select,
+[data-theme="light"] .lang-toggle,
+[data-theme="light"] button[data-i18n="switch_lang"]{ background:#000; color:#fff; }
+
+/* Dark theme: white pill */
+[data-theme="dark"] .lang-select,
+[data-theme="dark"] .lang-toggle,
+[data-theme="dark"] button[data-i18n="switch_lang"]{ background:#fff; color:#000; }
+
+/* Auto mode: follow system */
+[data-theme="auto"] .lang-select,
+[data-theme="auto"] .lang-toggle,
+[data-theme="auto"] button[data-i18n="switch_lang"]{
+  background:#000; color:#fff;
+}
+@media (prefers-color-scheme: dark){
+  [data-theme="auto"] .lang-select,
+  [data-theme="auto"] .lang-toggle,
+  [data-theme="auto"] button[data-i18n="switch_lang"]{ background:#fff; color:#000; }
+}
+
+</style>
 </head>
 <body>
   <a href="#contenu" class="skip-link" data-i18n="skip_to_content">Aller au contenu</a>
@@ -207,68 +300,94 @@
     </section>
 
     <!-- Projets -->
-    <section id="projets" class="container">
-      <h2 data-i18n="projects_title">Projets sélectionnés</h2>
-      <p data-i18n="projects_desc">Une courte sélection de travaux scolaires et personnels.</p>
-      <div class="grid grid-3" style="margin-top:16px;">
+    
 
-        <!-- Projet 1 -->
-        <article class="card project">
-          <img src="assets/Image_Géométrie.PNG" alt="Aperçu du projet 1" loading="lazy" data-i18n-attr="alt:project1_img_alt" />
-          <div>
-            <h3 data-i18n="project1_title">Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)</h3>
-            <p data-i18n="project1_desc">Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille</p>
-            <div class="tags">
-              <span class="chip" data-i18n="project1_tag1">Topographie</span>
-              <span class="chip" data-i18n="project1_tag2">Géometrie</span>
-              <span class="chip" data-i18n="project1_tag3">Science de l'Homme et Société</span>
-            </div>
-          </div>
-          <div style="display:flex; gap:.5rem;">
+<section id="projets" class="container proj-section">
+  <h2 data-i18n="projects_title">Projets sélectionnés</h2>
+  <div class="proj-accordion proj-MIX2">
+    <!-- Projet 1 -->
+    <details class="proj-item" open>
+      <summary>
+        <img class="proj-thumb" src="assets/Image_Géométrie.PNG" loading="lazy" width="72" height="48"
+             data-i18n-attr="alt:project1_img_alt" alt="Topographie – Gabian" />
+        <div class="proj-head">
+          <span class="proj-title" data-i18n="project1_title">Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)</span>
+          <span class="proj-meta">
+            <time class="proj-date" datetime="2025-07" data-i18n="project1_date">Juillet 2025</time>
+            <span class="proj-tags" data-i18n="project1_tags">Topographie · Géométrie · SHS</span>
+          </span>
+        </div>
+      </summary>
+      <div class="proj-body proj-split">
+        <div class="col col-img" aria-hidden="true"></div>
+        <div class="col col-text">
+          <p data-i18n="project1_desc">Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille</p>
+          <div class="proj-actions">
             <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download data-i18n="download">Télécharger</a>
-            <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL" data-i18n-attr="aria-label:open_on_hal">
-              <img src="assets/HAL_LOGO.svg.png" alt="HAL — science ouverte" data-i18n-attr="alt:hal_alt">
+            <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener"
+               data-i18n-attr="aria-label:open_on_hal" aria-label="Ouvrir sur HAL">
+              <img data-src-light="assets/hal-light.png" data-src-dark="assets/hal-dark.png" src="assets/hal-light.png" data-i18n-attr="alt:hal_alt" alt="HAL — science ouverte">
             </a>
           </div>
-        </article>
+        </div>
+      </div>
+    </details>
 
-        <!-- Projet 2 -->
-        <article class="card project">
-          <img src="assets/Image_memoire.PNG" alt="Aperçu du projet 2" loading="lazy" data-i18n-attr="alt:project2_img_alt" />
-          <div>
-            <h3 data-i18n="project2_title">Théoreme de Kuratowski et conjecture de Heawood</h3>
-            <p data-i18n="project2_desc">Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
-            <div class="tags">
-              <span class="chip" data-i18n="project2_tag1">Théories des graphes</span>
-              <span class="chip">LaTeX</span>
-            </div>
-          </div>
-          <div style="display:flex; gap:.5rem;">
+    <!-- Projet 2 -->
+    <details class="proj-item">
+      <summary>
+        <img class="proj-thumb" src="assets/Image_memoire.PNG" loading="lazy" width="72" height="48"
+             data-i18n-attr="alt:project2_img_alt" alt="Kuratowski & Heawood" />
+        <div class="proj-head">
+          <span class="proj-title" data-i18n="project2_title">Théoreme de Kuratowski et conjecture de Heawood</span>
+          <span class="proj-meta">
+            <time class="proj-date" datetime="2023-05" data-i18n="project2_date">Mai 2023</time>
+            <span class="proj-tags" data-i18n="project2_tags">Graphes · LaTeX</span>
+          </span>
+        </div>
+      </summary>
+      <div class="proj-body proj-split">
+        <div class="col col-img" aria-hidden="true"></div>
+        <div class="col col-text">
+          <p data-i18n="project2_desc">Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
+          <div class="proj-actions">
             <a class="btn" href="materials/Memoire_M1.pdf" download data-i18n="download">Télécharger</a>
           </div>
-        </article>
+        </div>
+      </div>
+    </details>
 
-        <!-- Projet 3 -->
-        <article class="card project">
-          <img src="assets/mise_en_abime.png" alt="Capture du projet 3" loading="lazy" data-i18n-attr="alt:project3_img_alt" />
-          <div>
-            <h3 data-i18n="project3_title">Site web portfolio minimal</h3>
-            <p data-i18n="project3_desc">Ce site ! One‑page avec thème clair/sombre.</p>
-            <div class="tags">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip" data-i18n="accessibility">Accessibilité</span>
-            </div>
-          </div>
-          <div style="display:flex; gap:.5rem;">
-            <a class="btn secondary img" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener" aria-label="Ouvrir sur GitHub" data-i18n-attr="aria-label:open_on_github">
-              <img src="assets/github.png" alt="GitHub">
+    <!-- Projet 3 -->
+    <details class="proj-item">
+      <summary>
+        <img class="proj-thumb" src="assets/mise_en_abime.png" loading="lazy" width="72" height="48"
+             data-i18n-attr="alt:project3_img_alt" alt="Portfolio minimal" />
+        <div class="proj-head">
+          <span class="proj-title" data-i18n="project3_title">Site web portfolio minimal</span>
+          <span class="proj-meta">
+            <time class="proj-date" datetime="2025" data-i18n="project3_date">2025</time>
+            <span class="proj-tags" data-i18n="project3_tags">HTML · CSS · Accessibilité</span>
+          </span>
+        </div>
+      </summary>
+      <div class="proj-body proj-split">
+        <div class="col col-img" aria-hidden="true"></div>
+        <div class="col col-text">
+          <p data-i18n="project3_desc">Ce site ! One‑page avec thème clair/sombre.</p>
+          <div class="proj-actions">
+            <a class="btn secondary img" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener"
+               data-i18n-attr="aria-label:open_on_github" aria-label="Ouvrir sur GitHub">
+              <img data-src-light="assets/github-light.png" data-src-dark="assets/github-dark.png" src="assets/github-light.png" alt="GitHub">
             </a>
             <a class="btn" href="#" data-i18n="demo">Démo :)</a>
           </div>
-        </article>
+        </div>
       </div>
-    </section>
+    </details>
+  </div>
+</section>
+
+
 
     <!-- Compétences -->
     <section id="competences" class="container">
@@ -369,10 +488,10 @@
         <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email" data-i18n="email_btn" data-i18n-attr="aria-label:send_email">✉️ Email</a>
         <button class="btn" id="copyEmail" aria-label="Copier l'adresse email" data-i18n="copy_email" data-i18n-attr="aria-label:copy_email">Copier l'email</button>
         <a class="btn secondary img" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub" data-i18n-attr="aria-label:open_on_github">
-          <img src="assets/github.png" alt="GitHub">
+          <img data-src-light="assets/github-light.png" data-src-dark="assets/github-dark.png" src="assets/github-light.png" alt="GitHub">
         </a>
         <a class="btn secondary img" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn" data-i18n-attr="aria-label:open_on_linkedin">
-          <img src="assets/Linkedin-Logo.png" alt="LinkedIn">
+          <img data-src-light="assets/linkedin-light.png" data-src-dark="assets/linkedin-dark.png" src="assets/linkedin-light.png" alt="LinkedIn">
         </a>
       </div>
     </section>
@@ -478,7 +597,13 @@
         copy_email: "Copier l'email",
         open_on_linkedin: "Ouvrir LinkedIn",
         last_update: "Dernière mise à jour manuelle.",
-        download: "Télécharger"
+        download: "Télécharger",
+        project1_date: "Juillet 2025",
+        project2_date: "Mai 2023",
+        project3_date: "2025",
+        project1_tags: "Topographie · Géométrie · SHS",
+        project2_tags: "Graphes · LaTeX",
+        project3_tags: "HTML · CSS · Accessibilité"
       },
       en: {
         site_title: "Victor Baleux — Portfolio",
@@ -571,7 +696,13 @@
         copy_email: "Copy email",
         open_on_linkedin: "Open LinkedIn",
         last_update: "Last manual update.",
-        download: "Download"
+        download: "Download",
+        project1_date: "July 2025",
+        project2_date: "May 2023",
+        project3_date: "2025",
+        project1_tags: "Topography · Geometry · Humanities & Social Sciences",
+        project2_tags: "Graph theory · LaTeX",
+        project3_tags: "HTML · CSS · Accessibility"
       }
     };
 
@@ -637,5 +768,68 @@
     // Année courante
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+<script>
+
+(function(){
+  function toLarge(details){
+    const sum = details.querySelector('summary');
+    const thumb = sum && sum.querySelector('.proj-thumb');
+    const slot = details.querySelector('.proj-body .col-img');
+    if(thumb && slot){
+      thumb.removeAttribute('width'); thumb.removeAttribute('height');
+      thumb.classList.add('as-large');
+      slot.prepend(thumb);
+    }
+  }
+  function toThumb(details){
+    const sum = details.querySelector('summary');
+    const moved = details.querySelector('.proj-body .col-img .proj-thumb');
+    if(sum && moved){
+      moved.classList.remove('as-large');
+      moved.setAttribute('width','72'); moved.setAttribute('height','48');
+      sum.insertBefore(moved, sum.firstChild);
+    }
+  }
+  document.querySelectorAll('.proj-MIX2 .proj-item').forEach((d)=>{
+    if(d.open) toLarge(d);
+    d.addEventListener('toggle', ()=>{
+      if(d.open) toLarge(d); else toThumb(d);
+    });
+  });
+})();
+
+</script>
+<script>
+(function(){
+  function getEffectiveTheme(){
+    var html = document.documentElement;
+    var t = html.getAttribute('data-theme') || 'auto';
+    if(t === 'light' || t === 'dark') return t;
+    try{
+      return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }catch(_){ return 'light'; }
+  }
+  function updateThemeAssets(theme){
+    var t = theme || getEffectiveTheme();
+    document.querySelectorAll('img[data-src-light][data-src-dark]').forEach(function(img){
+      var next = (t === 'dark') ? img.getAttribute('data-src-dark') : img.getAttribute('data-src-light');
+      if(next && img.getAttribute('src') !== next){ img.setAttribute('src', next); }
+    });
+  }
+  // initial
+  updateThemeAssets();
+  // watch HTML data-theme changes
+  try {
+    new MutationObserver(function(){ updateThemeAssets(); })
+      .observe(document.documentElement, { attributes:true, attributeFilter:['data-theme'] });
+  } catch(_){}
+  // watch OS theme changes (useful if site in 'auto')
+  try {
+    var mql = matchMedia('(prefers-color-scheme: dark)');
+    (mql.addEventListener || mql.addListener).call(mql, 'change', function(){ updateThemeAssets(); });
+  } catch(_){}
+})();
+</script>
 </body>
 </html>
