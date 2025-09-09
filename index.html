@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Victor Baleux — Portfolio</title>
-  <meta name="description" content="Portfolio simple d'étudiant : projets, compétences et contact. Modèle léger, responsive et accessible." />
+  <title data-i18n="site_title">Victor Baleux — Portfolio</title>
+  <meta name="description" content="Portfolio simple d'étudiant : projets, compétences et contact. Modèle léger, responsive et accessible." data-i18n-attr="content:meta_description" />
 
   <!-- Open Graph / SEO de base -->
-  <meta property="og:title" content="Victor Baleux — Portfolio" />
-  <meta property="og:description" content="Projets, compétences et contact." />
+  <meta property="og:title" content="Victor Baleux — Portfolio" data-i18n-attr="content:og_title" />
+  <meta property="og:description" content="Projets, compétences et contact." data-i18n-attr="content:og_description" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://picsum.photos/1200/630" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
@@ -42,8 +42,7 @@
 
     /* ===== Base ===== */
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth;   scroll-padding-top: 72px;
-}
+    html { scroll-behavior: smooth;   scroll-padding-top: 72px; }
     body {
       margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       background: var(--bg); color: var(--text);
@@ -59,12 +58,7 @@
     p { margin: 0 0 12px; color: var(--muted); }
     .chip { display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px; font-size:.9rem; background:transparent; }
     .btn { display:inline-flex; align-items:center; gap:.5rem; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background: var(--text); color: var(--bg); box-shadow: var(--shadow); cursor:pointer; }
-    /* Bouton HAL : fond blanc figé (indépendant du thème) */
-    .btn.btn-icon{
-      background: #e6e6e6;          /* blanc permanent */
-      color: #101828;            /* texte foncé lisible */
-      border: 1px solid #e4e7ec; /* même bordure que le thème clair */
-    }
+    .btn.btn-icon{ background:#e6e6e6; color:#101828; border:1px solid #e4e7ec; }
     .btn.secondary { background: transparent; color: var(--text); }
     .btn.secondary.img{ height: 45px; width: 150px; background: #e6e6e6;}
     .btn:hover { transform: translateY(-1px); }
@@ -82,6 +76,11 @@
     nav a { color: var(--text); opacity: .8; font-weight: 500; }
     nav a[aria-current="page"], nav a:hover { opacity: 1; }
     .nav-cta { display:flex; gap: .5rem; align-items:center; }
+
+    /* language switcher */
+    .lang-select{
+      border-radius:999px; border:1px solid var(--border); background:var(--card); padding:.5rem .75rem; color:var(--text);
+    }
 
     /* ===== Hero ===== */
     .hero { padding: 96px 0 56px; background: radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--brand) 20%, transparent 90%), transparent 60%),
@@ -134,7 +133,7 @@
     .t-item { position:relative; padding-left: 32px; margin: 18px 0; }
     .t-item::before { content:""; position:absolute; left:2px; top: 6px; width:18px; height:18px; border-radius:999px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
 
-    
+
     @media (max-width: 720px){
       .nav{ flex-wrap: wrap; gap: 8px 12px; }
       nav{ order: 3; width: 100%; }
@@ -148,36 +147,42 @@
     footer { border-top: 1px solid var(--border); padding: 24px 0 48px; color: var(--muted); }
 
     /* Focus styles */
-    :where(a, button, .btn) { transition: all .2s ease; }
+    :where(a, button, .btn, select) { transition: all .2s ease; }
     :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
   </style>
 
   <script>
-    // Évite le "flash" de thème en lisant le stockage AVANT le rendu
+    // Évite le "flash" de thème/langue en lisant le stockage AVANT le rendu
     (function(){
       try {
-        const saved = localStorage.getItem('theme');
-        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.setAttribute('data-theme', savedTheme);
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang === 'fr' || savedLang === 'en') document.documentElement.setAttribute('lang', savedLang);
       } catch(_){}
     })();
   </script>
 </head>
 <body>
-  <a href="#contenu" class="skip-link">Aller au contenu</a>
+  <a href="#contenu" class="skip-link" data-i18n="skip_to_content">Aller au contenu</a>
   <header>
     <div class="container nav">
       <div class="brand"><div class="logo" aria-hidden="true">VB</div> <span>Victor Baleux</span></div>
-      <nav aria-label="Navigation principale">
+      <nav aria-label="Navigation principale" data-i18n-attr="aria-label:nav_aria">
         <ul>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#competences">Compétences</a></li>
-          <li><a href="#Formation">Formation</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#projets" data-i18n="nav_projects">Projets</a></li>
+          <li><a href="#competences" data-i18n="nav_skills">Compétences</a></li>
+          <li><a href="#Formation" data-i18n="nav_education">Formation</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
         </ul>
       </nav>
       <div class="nav-cta">
-        <button class="btn" id="themeToggle" aria-label="Basculer le thème">🌓</button>
-        <a class="btn" href="materials/CV.pdf" download>📄 CV</a>
+        <select id="langSelect" class="lang-select" aria-label="Language" data-i18n-attr="aria-label:lang_aria">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+        </select>
+        <button class="btn" id="themeToggle" aria-label="Basculer le thème" data-i18n-attr="aria-label:toggle_theme" title="Basculer le thème" data-i18n-attr-2="title:toggle_theme">🌓</button>
+        <a class="btn" href="materials/CV.pdf" download data-i18n="download_cv">📄 CV</a>
       </div>
     </div>
   </header>
@@ -187,79 +192,79 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <h1 class="headline"><strong>Victor Baleux, Mathématicien</strong></h1>
-          <p class="subhead">Du théorème au code, sans perte de rigueur.</p>
+          <h1 class="headline" data-i18n="hero_title"><strong>Victor Baleux, Mathématicien</strong></h1>
+          <p class="subhead" data-i18n="hero_sub">Du théorème au code, sans perte de rigueur.</p>
           <div style="display:flex; gap:.5rem; margin-top:14px;">
-            <a class="btn" href="#projets">Voir mes projets</a>
-            <a class="btn" href="#contact">Me contacter</a>
+            <a class="btn" href="#projets" data-i18n="see_projects">Voir mes projets</a>
+            <a class="btn" href="#contact" data-i18n="contact_me">Me contacter</a>
           </div>
         </div>
         <div class="card">
-          <h2>À propos</h2>
-          <p>Actuellement en M2 MANU, disponible pour un stage à partir de <strong>Mars 2026</strong>.</p>
+          <h2 data-i18n="about_title">À propos</h2>
+          <p data-i18n="about_text">Actuellement en M2 MANU, disponible pour un stage à partir de <strong>Mars 2026</strong>.</p>
         </div>
       </div>
     </section>
 
     <!-- Projets -->
     <section id="projets" class="container">
-      <h2>Projets sélectionnés</h2>
-      <p>Une courte sélection de travaux scolaires et personnels.</p>
+      <h2 data-i18n="projects_title">Projets sélectionnés</h2>
+      <p data-i18n="projects_desc">Une courte sélection de travaux scolaires et personnels.</p>
       <div class="grid grid-3" style="margin-top:16px;">
-        
+
         <!-- Projet 1 -->
         <article class="card project">
-          <img src="assets/Image_Géométrie.PNG" alt="Aperçu du projet 1" loading="lazy" />
+          <img src="assets/Image_Géométrie.PNG" alt="Aperçu du projet 1" loading="lazy" data-i18n-attr="alt:project1_img_alt" />
           <div>
-            <h3>Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)</h3>
-            <p>Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille</p>
+            <h3 data-i18n="project1_title">Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)</h3>
+            <p data-i18n="project1_desc">Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille</p>
             <div class="tags">
-              <span class="chip">Topographie</span>
-              <span class="chip">Géometrie</span>
-              <span class="chip">Science de l'Homme et Société</span>
+              <span class="chip" data-i18n="project1_tag1">Topographie</span>
+              <span class="chip" data-i18n="project1_tag2">Géometrie</span>
+              <span class="chip" data-i18n="project1_tag3">Science de l'Homme et Société</span>
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download>Télécharger</a>
-            <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL">
-              <img src="assets/HAL_LOGO.svg.png" alt="HAL — science ouverte">
+            <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download data-i18n="download">Télécharger</a>
+            <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener" aria-label="Ouvrir sur HAL" data-i18n-attr="aria-label:open_on_hal">
+              <img src="assets/HAL_LOGO.svg.png" alt="HAL — science ouverte" data-i18n-attr="alt:hal_alt">
             </a>
           </div>
         </article>
 
         <!-- Projet 2 -->
         <article class="card project">
-          <img src="assets/Image_memoire.PNG" alt="Aperçu du projet 2" loading="lazy" />
+          <img src="assets/Image_memoire.PNG" alt="Aperçu du projet 2" loading="lazy" data-i18n-attr="alt:project2_img_alt" />
           <div>
-            <h3>Théoreme de Kuratowski et conjecture de Heawood</h3>
-            <p>Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
+            <h3 data-i18n="project2_title">Théoreme de Kuratowski et conjecture de Heawood</h3>
+            <p data-i18n="project2_desc">Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
             <div class="tags">
-              <span class="chip">Théories des graphes</span>
+              <span class="chip" data-i18n="project2_tag1">Théories des graphes</span>
               <span class="chip">LaTeX</span>
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn" href="materials/Memoire_M1.pdf" download>Télécharger</a>
+            <a class="btn" href="materials/Memoire_M1.pdf" download data-i18n="download">Télécharger</a>
           </div>
         </article>
 
         <!-- Projet 3 -->
         <article class="card project">
-          <img src="assets/mise_en_abime.png" alt="Capture du projet 3" loading="lazy" />
+          <img src="assets/mise_en_abime.png" alt="Capture du projet 3" loading="lazy" data-i18n-attr="alt:project3_img_alt" />
           <div>
-            <h3>Site web portfolio minimal</h3>
-            <p>Ce site ! One‑page avec thème clair/sombre.</p>
+            <h3 data-i18n="project3_title">Site web portfolio minimal</h3>
+            <p data-i18n="project3_desc">Ce site ! One‑page avec thème clair/sombre.</p>
             <div class="tags">
               <span class="chip">HTML</span>
               <span class="chip">CSS</span>
-              <span class="chip">Accessibilité</span>
+              <span class="chip" data-i18n="accessibility">Accessibilité</span>
             </div>
           </div>
           <div style="display:flex; gap:.5rem;">
-            <a class="btn secondary img" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener" aria-label="Ouvrir sur GitHub">
+            <a class="btn secondary img" href="https://github.com/VictorBaleux/VictorBaleux.github.io" target="_blank" rel="noopener" aria-label="Ouvrir sur GitHub" data-i18n-attr="aria-label:open_on_github">
               <img src="assets/github.png" alt="GitHub">
             </a>
-            <a class="btn" href="#">Démo :)</a>
+            <a class="btn" href="#" data-i18n="demo">Démo :)</a>
           </div>
         </article>
       </div>
@@ -267,36 +272,36 @@
 
     <!-- Compétences -->
     <section id="competences" class="container">
-      <h2>Compétences</h2>
+      <h2 data-i18n="skills_title">Compétences</h2>
       <dl class="skills">
-        <dt>Mathématiques</dt>
+        <dt data-i18n="skills_math">Mathématiques</dt>
         <dd>
           <ul>
-            <li><strong>EDP & calcul scientifique</strong> : Analyse des EDP (1→3), analyse numérique des EDP, modélisation numérique, estimations a posteriori, problèmes inverses</li>
-            <li><strong>Optimisation</strong> : optimisation convexe</li>
-            <li><strong>Analyse</strong> :analyse complexe, analyse fonctionnelle, mesure–intégration–Fourier, calcul différentiel & EDO</li>
-            <li><strong>Algèbre & géométrie</strong> : algèbre (1–2), groupes & anneaux, groupes & algèbres de Lie, géométrie différentielle, topologie (dont topologie algébrique), théorie des corps, cryptographie</li>
-            <li><strong>Graphes</strong> : notions avancées (Kuratowski, conjecture de Heawood)</li>
-            <li><strong>Mécanique appliquée</strong> : milieux continus, mécanique des fluides</li>
+            <li data-i18n="skills_math_item1"><strong>EDP & calcul scientifique</strong> : Analyse des EDP (1→3), analyse numérique des EDP, modélisation numérique, estimations a posteriori, problèmes inverses</li>
+            <li data-i18n="skills_math_item2"><strong>Optimisation</strong> : optimisation convexe</li>
+            <li data-i18n="skills_math_item3"><strong>Analyse</strong> :analyse complexe, analyse fonctionnelle, mesure–intégration–Fourier, calcul différentiel & EDO</li>
+            <li data-i18n="skills_math_item4"><strong>Algèbre & géométrie</strong> : algèbre (1–2), groupes & anneaux, groupes & algèbres de Lie, géométrie différentielle, topologie (dont topologie algébrique), théorie des corps, cryptographie</li>
+            <li data-i18n="skills_math_item5"><strong>Graphes</strong> : notions avancées (Kuratowski, conjecture de Heawood)</li>
+            <li data-i18n="skills_math_item6"><strong>Mécanique appliquée</strong> : milieux continus, mécanique des fluides</li>
           </ul>
         </dd>
 
-        <dt>Informatique & outils</dt>
+        <dt data-i18n="skills_cs">Informatique & outils</dt>
         <dd>
           <ul>
-            <li><strong>Langages</strong> : C/C++ (dont C++ avancé), Python</li>
-            <li><strong>Écosystème scientifique</strong> : SageMath, MATLAB, FreeFem++, LaTeX</li>
-            <li><strong>Dev & outillage</strong> : Git/GitHub, HTML/CSS</li>
-            <li><strong>Numérique pour les EDP</strong> : méthodes numériques, modélisation & simulation</li>
+            <li data-i18n="skills_cs_item1"><strong>Langages</strong> : C/C++ (dont C++ avancé), Python</li>
+            <li data-i18n="skills_cs_item2"><strong>Écosystème scientifique</strong> : SageMath, MATLAB, FreeFem++, LaTeX</li>
+            <li data-i18n="skills_cs_item3"><strong>Dev & outillage</strong> : Git/GitHub, HTML/CSS</li>
+            <li data-i18n="skills_cs_item4"><strong>Numérique pour les EDP</strong> : méthodes numériques, modélisation & simulation</li>
           </ul>
         </dd>
 
-        <dt>Autre</dt>
+        <dt data-i18n="skills_other">Autre</dt>
         <dd>
           <ul>
-            <li><strong>Langues</strong> : Français ; Anglais (C2) ; Espagnol (notions)</li>
-            <li><strong>Communication & pédagogie</strong> : préparation écrit/oral (Agrégation), rédaction scientifique (TER, mémoire)</li>
-            <li><strong>Soft skills</strong> : rigueur, autonomie, travail en équipe, sens des responsabilités, capacité d’abstraction, sociabilité</li>
+            <li data-i18n="skills_other_item1"><strong>Langues</strong> : Français ; Anglais (C2) ; Espagnol (notions)</li>
+            <li data-i18n="skills_other_item2"><strong>Communication & pédagogie</strong> : préparation écrit/oral (Agrégation), rédaction scientifique (TER, mémoire)</li>
+            <li data-i18n="skills_other_item3"><strong>Soft skills</strong> : rigueur, autonomie, travail en équipe, sens des responsabilités, capacité d’abstraction, sociabilité</li>
           </ul>
         </dd>
       </dl>
@@ -304,69 +309,69 @@
 
     <!-- Formation -->
     <section id="Formation" class="container">
-      <h2>Formation</h2>
-      <div class="timeline" aria-label="Frise chronologique de ma formation">
+      <h2 data-i18n="education_title">Formation</h2>
+      <div class="timeline" aria-label="Frise chronologique de ma formation" data-i18n-attr="aria-label:timeline_aria">
         <div class="t-item">
-          <h3>Modélisation et Analyse Numérique — M2 MANU</h3>
-          <p>Université de Montpellier · 2025–présent</p>
+          <h3 data-i18n="edu_item1_title">Modélisation et Analyse Numérique — M2 MANU</h3>
+          <p data-i18n="edu_item1_sub">Université de Montpellier · 2025–présent</p>
           <ul>
-            <li>Analyse Numérique 4 · Analyse des EDP 3 · Estimations a posteriori · Problèmes inverses · Programmation 2 (C++ avancé) · Modélisation numérique</li>
-            <li>Stage </li>
+            <li data-i18n="edu_item1_li1">Analyse Numérique 4 · Analyse des EDP 3 · Estimations a posteriori · Problèmes inverses · Programmation 2 (C++ avancé) · Modélisation numérique</li>
+            <li data-i18n="edu_item1_li2">Stage </li>
           </ul>
         </div>
         <div class="t-item">
-          <h3>Réorientation vers les mathématiques appliquées</h3>
-          <p>Université de Montpellier · 2024–2025</p>
+          <h3 data-i18n="edu_item2_title">Réorientation vers les mathématiques appliquées</h3>
+          <p data-i18n="edu_item2_sub">Université de Montpellier · 2024–2025</p>
           <ul>
-            <li><strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des millieux continues · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle</li>
-            <li><strong>Semestre 1, M2 Mathématiques fondamentales</strong>  : Géométrie différentielle · Topologie algébrique · Géométrie algébrique</li>
+            <li data-i18n="edu_item2_li1"><strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des millieux continues · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle</li>
+            <li data-i18n="edu_item2_li2"><strong>Semestre 1, M2 Mathématiques fondamentales</strong>  : Géométrie différentielle · Topologie algébrique · Géométrie algébrique</li>
           </ul>
         </div>
         <div class="t-item">
-          <h3>Préparation à l’agrégation — M2</h3>
-          <p>Université de Montpellier · 2023–2024</p>
+          <h3 data-i18n="edu_item3_title">Préparation à l’agrégation — M2</h3>
+          <p data-i18n="edu_item3_sub">Université de Montpellier · 2023–2024</p>
           <ul>
-            <li>UEs : Préparation écrit/oral</li>
-            <li>Option C Algèbre & calcul formel (SageMath) · Projet (développements)</li>
-            <li>Admissible à L' Agrégation de Mathématiques</li>
+            <li data-i18n="edu_item3_li1">UEs : Préparation écrit/oral</li>
+            <li data-i18n="edu_item3_li2">Option C Algèbre & calcul formel (SageMath) · Projet (développements)</li>
+            <li data-i18n="edu_item3_li3">Admissible à L' Agrégation de Mathématiques</li>
           </ul>
         </div>
         <div class="t-item">
-          <h3>Mathématiques fondamentales — M1</h3>
-          <p>Université de Montpellier · 2022–2023</p>
+          <h3 data-i18n="edu_item4_title">Mathématiques fondamentales — M1</h3>
+          <p data-i18n="edu_item4_sub">Université de Montpellier · 2022–2023</p>
           <ul>
-            <li>Groupes & géométrie · Algèbre 1–2 · Analyse fonctionnelle · Analyse complexe & Topologie · Géométrie différentielle · Groupes & algèbres de Lie</li>
-            <li>TER (mémoire) : Théoreme de Kuratowski et conjecture de Heawood</li>
+            <li data-i18n="edu_item4_li1">Groupes & géométrie · Algèbre 1–2 · Analyse fonctionnelle · Analyse complexe & Topologie · Géométrie différentielle · Groupes & algèbres de Lie</li>
+            <li data-i18n="edu_item4_li2">TER (mémoire) : Théoreme de Kuratowski et conjecture de Heawood</li>
           </ul>
         </div>
         <div class="t-item">
-          <h3>Licence de mathématiques</h3>
-          <p>Université de Montpellier · 2019–2022</p>
+          <h3 data-i18n="edu_item5_title">Licence de mathématiques</h3>
+          <p data-i18n="edu_item5_sub">Université de Montpellier · 2019–2022</p>
           <ul>
-            <li><strong>L3</strong> : Groupes & anneaux 1 · Calcul différentiel & EDO · Mesure–Intégration–Fourier · Topologie · Analyse complexe · Analyse numérique des EDP</li> 
-            <li><em>options</em> : Groupes & anneaux 2 · Optimisation convexe</li>
-            <li>CUPGE maths/physique (L1–L2)</li> : Eletromagnétisme · Mécanique du solide indéformable
+            <li data-i18n="edu_item5_li1"><strong>L3</strong> : Groupes & anneaux 1 · Calcul différentiel & EDO · Mesure–Intégration–Fourier · Topologie · Analyse complexe · Analyse numérique des EDP</li> 
+            <li data-i18n="edu_item5_li2"><em>options</em> : Groupes & anneaux 2 · Optimisation convexe</li>
+            <li data-i18n="edu_item5_li3">CUPGE maths/physique (L1–L2)</li> : Eletromagnétisme · Mécanique du solide indéformable
           </ul>
         </div>
         <div class="t-item">
-          <h3>Baccalauréat scientifique — Lycée Frédéric Bazille</h3>
-          <p>Montpellier · 2018</p>
-          <ul><li>Spécialité mathématiques, mention AB</li></ul>
+          <h3 data-i18n="edu_item6_title">Baccalauréat scientifique — Lycée Frédéric Bazille</h3>
+          <p data-i18n="edu_item6_sub">Montpellier · 2018</p>
+          <ul><li data-i18n="edu_item6_li1">Spécialité mathématiques, mention AB</li></ul>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="container">
-      <h2>Contact</h2>
-      <p>N'hésitez pas à m'écrire pour un stage, un poste ou un projet.</p>
+      <h2 data-i18n="contact_title">Contact</h2>
+      <p data-i18n="contact_desc">N'hésitez pas à m'écrire pour un stage, un poste ou un projet.</p>
       <div style="display:flex; gap:.5rem; margin-top:10px; flex-wrap: wrap;">
-        <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email">✉️ Email</a>
-        <button class="btn" id="copyEmail" aria-label="Copier l'adresse email">Copier l'email</button>
-        <a class="btn secondary img" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub">
+        <a class="btn" href="mailto:victor.baleux1@orange.fr" aria-label="Envoyer un email" data-i18n="email_btn" data-i18n-attr="aria-label:send_email">✉️ Email</a>
+        <button class="btn" id="copyEmail" aria-label="Copier l'adresse email" data-i18n="copy_email" data-i18n-attr="aria-label:copy_email">Copier l'email</button>
+        <a class="btn secondary img" href="https://github.com/VictorBaleux" target="_blank" rel="noopener" aria-label="Ouvrir GitHub" data-i18n-attr="aria-label:open_on_github">
           <img src="assets/github.png" alt="GitHub">
         </a>
-        <a class="btn secondary img" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn">
+        <a class="btn secondary img" href="https://www.linkedin.com/in/victor-baleux-21835324a/" target="_blank" rel="noopener" aria-label="Ouvrir LinkedIn" data-i18n-attr="aria-label:open_on_linkedin">
           <img src="assets/Linkedin-Logo.png" alt="LinkedIn">
         </a>
       </div>
@@ -375,12 +380,229 @@
 
   <footer>
     <div class="container">
-      <small>© <span id="year"></span> Victor Baleux. Dernière mise à jour manuelle.</small>
+      <small>© <span id="year"></span> <span>Victor Baleux.</span> <span data-i18n="last_update">Dernière mise à jour manuelle.</span></small>
     </div>
   </footer>
 
   <script>
-    // Thème clair/sombre avec sauvegarde
+    // i18n dictionary
+    const I18N = {
+      fr: {
+        site_title: "Victor Baleux — Portfolio",
+        meta_description: "Portfolio simple d'étudiant : projets, compétences et contact. Modèle léger, responsive et accessible.",
+        og_title: "Victor Baleux — Portfolio",
+        og_description: "Projets, compétences et contact.",
+        skip_to_content: "Aller au contenu",
+        nav_aria: "Navigation principale",
+        nav_projects: "Projets",
+        nav_skills: "Compétences",
+        nav_education: "Formation",
+        nav_contact: "Contact",
+        lang_aria: "Langue",
+        toggle_theme: "Basculer le thème",
+        download_cv: "📄 CV",
+        hero_title: "<strong>Victor Baleux, Mathématicien</strong>",
+        hero_sub: "Du théorème au code, sans perte de rigueur.",
+        see_projects: "Voir mes projets",
+        contact_me: "Me contacter",
+        about_title: "À propos",
+        about_text: "Actuellement en M2 MANU, disponible pour un stage à partir de <strong>Mars 2026</strong>.",
+        projects_title: "Projets sélectionnés",
+        projects_desc: "Une courte sélection de travaux scolaires et personnels.",
+        project1_img_alt: "Aperçu du projet 1",
+        project1_title: "Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)",
+        project1_desc: "Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille",
+        project1_tag1: "Topographie",
+        project1_tag2: "Géometrie",
+        project1_tag3: "Science de l'Homme et Société",
+        open_on_hal: "Ouvrir sur HAL",
+        hal_alt: "HAL — science ouverte",
+        project2_img_alt: "Aperçu du projet 2",
+        project2_title: "Théoreme de Kuratowski et conjecture de Heawood",
+        project2_desc: "Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète",
+        project2_tag1: "Théories des graphes",
+        project3_img_alt: "Capture du projet 3",
+        project3_title: "Site web portfolio minimal",
+        project3_desc: "Ce site ! One‑page avec thème clair/sombre.",
+        accessibility: "Accessibilité",
+        open_on_github: "Ouvrir sur GitHub",
+        demo: "Démo :)",
+        skills_title: "Compétences",
+        skills_math: "Mathématiques",
+        skills_math_item1: "<strong>EDP & calcul scientifique</strong> : Analyse des EDP (1→3), analyse numérique des EDP, modélisation numérique, estimations a posteriori, problèmes inverses",
+        skills_math_item2: "<strong>Optimisation</strong> : optimisation convexe",
+        skills_math_item3: "<strong>Analyse</strong> :analyse complexe, analyse fonctionnelle, mesure–intégration–Fourier, calcul différentiel & EDO",
+        skills_math_item4: "<strong>Algèbre & géométrie</strong> : algèbre (1–2), groupes & anneaux, groupes & algèbres de Lie, géométrie différentielle, topologie (dont topologie algébrique), théorie des corps, cryptographie",
+        skills_math_item5: "<strong>Graphes</strong> : notions avancées (Kuratowski, conjecture de Heawood)",
+        skills_math_item6: "<strong>Mécanique appliquée</strong> : milieux continus, mécanique des fluides",
+        skills_cs: "Informatique & outils",
+        skills_cs_item1: "<strong>Langages</strong> : C/C++ (dont C++ avancé), Python",
+        skills_cs_item2: "<strong>Écosystème scientifique</strong> : SageMath, MATLAB, FreeFem++, LaTeX",
+        skills_cs_item3: "<strong>Dev & outillage</strong> : Git/GitHub, HTML/CSS",
+        skills_cs_item4: "<strong>Numérique pour les EDP</strong> : méthodes numériques, modélisation & simulation",
+        skills_other: "Autre",
+        skills_other_item1: "<strong>Langues</strong> : Français ; Anglais (C2) ; Espagnol (notions)",
+        skills_other_item2: "<strong>Communication & pédagogie</strong> : préparation écrit/oral (Agrégation), rédaction scientifique (TER, mémoire)",
+        skills_other_item3: "<strong>Soft skills</strong> : rigueur, autonomie, travail en équipe, sens des responsabilités, capacité d’abstraction, sociabilité",
+        education_title: "Formation",
+        timeline_aria: "Frise chronologique de ma formation",
+        edu_item1_title: "Modélisation et Analyse Numérique — M2 MANU",
+        edu_item1_sub: "Université de Montpellier · 2025–présent",
+        edu_item1_li1: "Analyse Numérique 4 · Analyse des EDP 3 · Estimations a posteriori · Problèmes inverses · Programmation 2 (C++ avancé) · Modélisation numérique",
+        edu_item1_li2: "Stage ",
+        edu_item2_title: "Réorientation vers les mathématiques appliquées",
+        edu_item2_sub: "Université de Montpellier · 2024–2025",
+        edu_item2_li1: "<strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des millieux continues · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle",
+        edu_item2_li2: "<strong>Semestre 1, M2 Mathématiques fondamentales</strong>  : Géométrie différentielle · Topologie algébrique · Géométrie algébrique",
+        edu_item3_title: "Préparation à l’agrégation — M2",
+        edu_item3_sub: "Université de Montpellier · 2023–2024",
+        edu_item3_li1: "UEs : Préparation écrit/oral",
+        edu_item3_li2: "Option C Algèbre & calcul formel (SageMath) · Projet (développements)",
+        edu_item3_li3: "Admissible à L' Agrégation de Mathématiques",
+        edu_item4_title: "Mathématiques fondamentales — M1",
+        edu_item4_sub: "Université de Montpellier · 2022–2023",
+        edu_item4_li1: "Groupes & géométrie · Algèbre 1–2 · Analyse fonctionnelle · Analyse complexe & Topologie · Géométrie différentielle · Groupes & algèbres de Lie",
+        edu_item4_li2: "TER (mémoire) : Théoreme de Kuratowski et conjecture de Heawood",
+        edu_item5_title: "Licence de mathématiques",
+        edu_item5_sub: "Université de Montpellier · 2019–2022",
+        edu_item5_li1: "<strong>L3</strong> : Groupes & anneaux 1 · Calcul différentiel & EDO · Mesure–Intégration–Fourier · Topologie · Analyse complexe · Analyse numérique des EDP",
+        edu_item5_li2: "<em>options</em> : Groupes & anneaux 2 · Optimisation convexe",
+        edu_item5_li3: "CUPGE maths/physique (L1–L2)</li> : Eletromagnétisme · Mécanique du solide indéformable",
+        edu_item6_title: "Baccalauréat scientifique — Lycée Frédéric Bazille",
+        edu_item6_sub: "Montpellier · 2018",
+        edu_item6_li1: "Spécialité mathématiques, mention AB",
+        contact_title: "Contact",
+        contact_desc: "N'hésitez pas à m'écrire pour un stage, un poste ou un projet.",
+        email_btn: "✉️ Email",
+        send_email: "Envoyer un email",
+        copy_email: "Copier l'email",
+        open_on_linkedin: "Ouvrir LinkedIn",
+        last_update: "Dernière mise à jour manuelle.",
+        download: "Télécharger"
+      },
+      en: {
+        site_title: "Victor Baleux — Portfolio",
+        meta_description: "Simple student portfolio: projects, skills and contact. Lightweight, responsive and accessible template.",
+        og_title: "Victor Baleux — Portfolio",
+        og_description: "Projects, skills and contact.",
+        skip_to_content: "Skip to content",
+        nav_aria: "Main navigation",
+        nav_projects: "Projects",
+        nav_skills: "Skills",
+        nav_education: "Education",
+        nav_contact: "Contact",
+        lang_aria: "Language",
+        toggle_theme: "Toggle theme",
+        download_cv: "📄 CV",
+        hero_title: "<strong>Victor Baleux, Mathematician</strong>",
+        hero_sub: "From theorem to code, without losing rigor.",
+        see_projects: "See my projects",
+        contact_me: "Contact me",
+        about_title: "About",
+        about_text: "Currently in M2 MANU, available for an internship starting <strong>March 2026</strong>.",
+        projects_title: "Selected projects",
+        projects_desc: "A short selection of academic and personal work.",
+        project1_img_alt: "Preview of project 1",
+        project1_title: "Position calculations from historical topographic data in Gabian (Hérault)",
+        project1_desc: "Subsequent excavations were carried out at the computed coordinates and confirmed the excavation site.",
+        project1_tag1: "Topography",
+        project1_tag2: "Geometry",
+        project1_tag3: "Humanities & Social Sciences",
+        open_on_hal: "Open on HAL",
+        hal_alt: "HAL — open science",
+        project2_img_alt: "Preview of project 2",
+        project2_title: "Kuratowski's theorem and Heawood's conjecture",
+        project2_desc: "M1 Fundamental Mathematics thesis done in a pair. Kuratowski's theorem was treated quickly; we then added Heawood's conjecture, which remains incomplete.",
+        project2_tag1: "Graph theory",
+        project3_img_alt: "Screenshot of project 3",
+        project3_title: "Minimal portfolio website",
+        project3_desc: "This site! One‑page with light/dark theme.",
+        accessibility: "Accessibility",
+        open_on_github: "Open on GitHub",
+        demo: "Demo :)",
+        skills_title: "Skills",
+        skills_math: "Mathematics",
+        skills_math_item1: "<strong>PDEs & Scientific Computing</strong>: PDE analysis (1→3), numerical analysis of PDEs, numerical modeling, a posteriori estimates, inverse problems",
+        skills_math_item2: "<strong>Optimization</strong>: convex optimization",
+        skills_math_item3: "<strong>Analysis</strong>: complex analysis, functional analysis, measure–integration–Fourier, differential calculus & ODEs",
+        skills_math_item4: "<strong>Algebra & Geometry</strong>: algebra (1–2), groups & rings, Lie groups & algebras, differential geometry, topology (incl. algebraic topology), field theory, cryptography",
+        skills_math_item5: "<strong>Graphs</strong>: advanced notions (Kuratowski, Heawood conjecture)",
+        skills_math_item6: "<strong>Applied Mechanics</strong>: continuum mechanics, fluid mechanics",
+        skills_cs: "Computer science & tools",
+        skills_cs_item1: "<strong>Languages</strong>: C/C++ (incl. advanced C++), Python",
+        skills_cs_item2: "<strong>Scientific stack</strong>: SageMath, MATLAB, FreeFem++, LaTeX",
+        skills_cs_item3: "<strong>Dev & tooling</strong>: Git/GitHub, HTML/CSS",
+        skills_cs_item4: "<strong>Numerics for PDEs</strong>: numerical methods, modeling & simulation",
+        skills_other: "Other",
+        skills_other_item1: "<strong>Languages</strong>: French; English (C2); Spanish (basics)",
+        skills_other_item2: "<strong>Communication & teaching</strong>: written/oral prep (Agrégation), scientific writing (TER, thesis)",
+        skills_other_item3: "<strong>Soft skills</strong>: rigor, autonomy, teamwork, sense of responsibility, abstraction ability, sociability",
+        education_title: "Education",
+        timeline_aria: "Timeline of my education",
+        edu_item1_title: "Modeling and Numerical Analysis — M2 MANU",
+        edu_item1_sub: "University of Montpellier · 2025–present",
+        edu_item1_li1: "Numerical Analysis 4 · PDE Analysis 3 · A posteriori estimates · Inverse problems · Programming 2 (advanced C++) · Numerical modeling",
+        edu_item1_li2: "Internship",
+        edu_item2_title: "Switch to Applied Mathematics",
+        edu_item2_sub: "University of Montpellier · 2024–2025",
+        edu_item2_li1: "<strong>Semester 2, M1 MANU</strong>: PDE Analysis 1–2 · Numerical Analysis 1–3 · Continuum mechanics · Fluid mechanics · Programming 1 (C++) · Differential geometry",
+        edu_item2_li2: "<strong>Semester 1, M2 Fundamental Mathematics</strong>: Differential geometry · Algebraic topology · Algebraic geometry",
+        edu_item3_title: "Agrégation exam prep — M2",
+        edu_item3_sub: "University of Montpellier · 2023–2024",
+        edu_item3_li1: "Courses: Written/oral preparation",
+        edu_item3_li2: "Option C Algebra & computer algebra (SageMath) · Project (developments)",
+        edu_item3_li3: "Admissible to the French Math Agrégation",
+        edu_item4_title: "Fundamental Mathematics — M1",
+        edu_item4_sub: "University of Montpellier · 2022–2023",
+        edu_item4_li1: "Groups & geometry · Algebra 1–2 · Functional analysis · Complex analysis & Topology · Differential geometry · Lie groups & algebras",
+        edu_item4_li2: "TER (thesis): Kuratowski's theorem and Heawood's conjecture",
+        edu_item5_title: "Bachelor in Mathematics",
+        edu_item5_sub: "University of Montpellier · 2019–2022",
+        edu_item5_li1: "<strong>Year 3 (L3)</strong>: Groups & rings 1 · Differential calculus & ODEs · Measure–Integration–Fourier · Topology · Complex analysis · Numerical analysis of PDEs",
+        edu_item5_li2: "<em>electives</em>: Groups & rings 2 · Convex optimization",
+        edu_item5_li3: "CUPGE maths/physics (L1–L2)</li>: Electromagnetism · Rigid body mechanics",
+        edu_item6_title: "Science Baccalaureate — Lycée Frédéric Bazille",
+        edu_item6_sub: "Montpellier · 2018",
+        edu_item6_li1: "Mathematics specialization, honors AB",
+        contact_title: "Contact",
+        contact_desc: "Feel free to reach out for an internship, a position or a project.",
+        email_btn: "✉️ Email",
+        send_email: "Send an email",
+        copy_email: "Copy email",
+        open_on_linkedin: "Open LinkedIn",
+        last_update: "Last manual update.",
+        download: "Download"
+      }
+    };
+
+    // Apply i18n on elements
+    function applyI18n(lang){
+      const dict = I18N[lang] || I18N.fr;
+      document.documentElement.lang = lang;
+      // text nodes
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] !== undefined){
+          // innerHTML on purpose to allow <strong>, <em>, etc.
+          el.innerHTML = dict[key];
+        }
+      });
+      // attributes in "attr:valueKey" format; support up to 2 attrs via data-i18n-attr and data-i18n-attr-2
+      const setAttr = (el, attrKey) => {
+        const spec = el.getAttribute(attrKey);
+        if(!spec) return;
+        const [attr, key] = spec.split(":");
+        if (attr && key && dict[key] !== undefined){
+          el.setAttribute(attr, dict[key]);
+        }
+      };
+      document.querySelectorAll("[data-i18n-attr]").forEach(el=>setAttr(el, "data-i18n-attr"));
+      document.querySelectorAll("[data-i18n-attr-2]").forEach(el=>setAttr(el, "data-i18n-attr-2"));
+      try { localStorage.setItem('lang', lang); } catch(_){}
+      // Update page title/meta already handled above via data-i18n and data-i18n-attr
+    }
+
+    // Theme toggle with persistence
     const btn = document.getElementById('themeToggle');
     btn?.addEventListener('click', () => {
       const html = document.documentElement;
@@ -393,11 +615,23 @@
       try { localStorage.setItem('theme', next); } catch(_){}
     });
 
+    // Language selector
+    const langSelect = document.getElementById('langSelect');
+    const initLang = (localStorage.getItem('lang') || document.documentElement.lang || 'fr');
+    langSelect.value = initLang;
+    applyI18n(initLang);
+    langSelect.addEventListener('change', (e)=>applyI18n(e.target.value));
+
     // Copier l'email
     const copyBtn = document.getElementById('copyEmail');
     copyBtn?.addEventListener('click', async () => {
       const email = 'victor.baleux1@orange.fr';
-      try { await navigator.clipboard.writeText(email); copyBtn.textContent = 'Copié ✔'; setTimeout(()=>copyBtn.textContent='Copier l\'email', 1500); } catch(_){}
+      try { 
+        await navigator.clipboard.writeText(email); 
+        const prev = copyBtn.textContent;
+        copyBtn.textContent = (document.documentElement.lang === 'en') ? 'Copied ✔' : 'Copié ✔';
+        setTimeout(()=>copyBtn.textContent = (document.documentElement.lang === 'en') ? I18N.en.copy_email : I18N.fr.copy_email, 1500); 
+      } catch(_){}
     });
 
     // Année courante
