@@ -10,7 +10,7 @@
   <meta property="og:title" content="Victor Baleux — Portfolio" data-i18n-attr="content:og_title" />
   <meta property="og:description" content="Projets, compétences et contact." data-i18n-attr="content:og_description" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://picsum.photos/1200/630" />
+  <meta property="og:image" content="og-image.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
 
   <style>
@@ -21,7 +21,7 @@
       --muted: #667085;
       --card: #f2f4f7;
       --border: #e4e7ec;
-      --brand: #ff9634; /* bleu */
+      --brand: #ff9634; /* orange */
       --brand-2: #9f31e9; /* vert */
       --shadow: 0 10px 25px rgba(16, 24, 40, 0.08);
       --radius: 16px;
@@ -59,7 +59,7 @@
     .chip { display:inline-block; padding:6px 10px; border:1px solid var(--border); border-radius:999px; margin:4px; font-size:.9rem; background:transparent; }
     .btn { display:inline-flex; align-items:center; gap:.5rem; padding:10px 16px; border-radius:999px; border:1px solid var(--border); background: var(--text); color: var(--bg); box-shadow: var(--shadow); cursor:pointer; }
     .btn.btn-icon{ background:#e6e6e6; color:#101828; border:1px solid #e4e7ec; }
-    .btn.secondary.img{ height: 50px; width: 150px; }
+    .btn.secondary.img{ padding: .5rem 1rem;    }
     .btn:hover { transform: translateY(-1px); }
     .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
 
@@ -77,9 +77,7 @@
     .nav-cta { display:flex; gap: .5rem; align-items:center; }
 
     /* language switcher */
-    .lang-select{
-      border-radius:999px; border:1px solid var(--border); background:var(--card); padding:.5rem .75rem; color:var(--text);
-    }
+    .lang-select{appearance:none;-webkit-appearance:none;-moz-appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:10px 16px;border-radius:999px;border:1px solid var(--border);box-shadow: var(--shadow);background: var(--text);color: var(--bg);font-weight:700;line-height:1;cursor:pointer;transition: transform .2s ease;}.lang-select:hover{transform: translateY(-1px);}
 
     /* ===== Hero ===== */
     .hero { padding: 96px 0 56px; background: radial-gradient(1200px 500px at 10% -10%, color-mix(in oklab, var(--brand) 20%, transparent 90%), transparent 60%),
@@ -148,7 +146,16 @@
     /* Focus styles */
     :where(a, button, .btn, select) { transition: all .2s ease; }
     :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 8px; }
-  </style>
+  
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
 
   <script>
     // Évite le "flash" de thème/langue en lisant le stockage AVANT le rendu
@@ -219,42 +226,41 @@
 
 </style>
 
-<style>
 
-/* THEME-AWARE LANG BUTTON OVERRIDE */
-.lang-select, .lang-toggle, button[data-i18n="switch_lang"]{
-  appearance:none; -webkit-appearance:none; -moz-appearance:none;
-  display:inline-flex; align-items:center; justify-content:center;
-  gap:.5rem; padding:10px 16px; border-radius:999px;
-  border:1px solid var(--border); box-shadow: var(--shadow);
-  font-weight:700; line-height:1; cursor:pointer;
-  transition: transform .2s ease;
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Votre Nom"
 }
-.lang-select:hover, .lang-toggle:hover, button[data-i18n="switch_lang"]:hover{ transform: translateY(-1px); }
+</script>
+<link rel="canonical" href="https://your-domain.tld/">
 
-/* Light theme: black pill */
-[data-theme="light"] .lang-select,
-[data-theme="light"] .lang-toggle,
-[data-theme="light"] button[data-i18n="switch_lang"]{ background:#000; color:#fff; }
 
-/* Dark theme: white pill */
-[data-theme="dark"] .lang-select,
-[data-theme="dark"] .lang-toggle,
-[data-theme="dark"] button[data-i18n="switch_lang"]{ background:#fff; color:#000; }
-
-/* Auto mode: follow system */
-[data-theme="auto"] .lang-select,
-[data-theme="auto"] .lang-toggle,
-[data-theme="auto"] button[data-i18n="switch_lang"]{
-  background:#000; color:#fff;
-}
-@media (prefers-color-scheme: dark){
-  [data-theme="auto"] .lang-select,
-  [data-theme="auto"] .lang-toggle,
-  [data-theme="auto"] button[data-i18n="switch_lang"]{ background:#fff; color:#000; }
+<style id="btn-img-fix">
+/* Normalize image buttons to same size as standard .btn */
+.btn.img, .btn.secondary.img, .btn.primary.img {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  white-space: nowrap;
+  padding: .5rem 1rem;     /* adjust if your base .btn uses other values */
+  line-height: 1.2;
 }
 
+/* Constrain logo/icon inside buttons without distortion */
+.btn.img img, .btn.secondary.img img, .btn.primary.img img,
+.btn.img svg, .btn.secondary.img svg, .btn.primary.img svg{
+  height: 1.25em;
+  width: auto;             /* preserve aspect ratio */
+  flex: 0 0 auto;          /* don't let flexbox shrink the icon */
+  display: block;
+  vertical-align: middle;
+}
 </style>
+
+
 </head>
 <body>
   <a href="#contenu" class="skip-link" data-i18n="skip_to_content">Aller au contenu</a>
@@ -321,7 +327,7 @@
       <div class="proj-body proj-split">
         <div class="col col-img" aria-hidden="true"></div>
         <div class="col col-text">
-          <p data-i18n="project1_desc">Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille</p>
+          <p data-i18n="project1_desc">Des fouilles ultérieures ont été faites aux coordonnées calculées et ont confirmé le site de fouille</p>
           <div class="proj-actions">
             <a class="btn" href="materials/Topographie_ancienne_GABIAN.pdf" download data-i18n="download">Télécharger</a>
             <a class="btn secondary img" href="https://hal.science/hal-05163630" target="_blank" rel="noopener"
@@ -339,7 +345,7 @@
         <img class="proj-thumb" src="assets/Image_memoire.PNG" loading="lazy" width="72" height="48"
              data-i18n-attr="alt:project2_img_alt" alt="Kuratowski & Heawood" />
         <div class="proj-head">
-          <span class="proj-title" data-i18n="project2_title">Théoreme de Kuratowski et conjecture de Heawood</span>
+          <span class="proj-title" data-i18n="project2_title">Théorème de Kuratowski et conjecture de Heawood</span>
           <span class="proj-meta">
             <time class="proj-date" datetime="2023-05" data-i18n="project2_date">Mai 2023</time>
             <span class="proj-tags" data-i18n="project2_tags">Graphes · LaTeX</span>
@@ -349,7 +355,7 @@
       <div class="proj-body proj-split">
         <div class="col col-img" aria-hidden="true"></div>
         <div class="col col-text">
-          <p data-i18n="project2_desc">Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
+          <p data-i18n="project2_desc">Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de Kuratowski à été traité rapidement on a alors ajouté la conjecture de Heawood, elle est cependant incomplète</p>
           <div class="proj-actions">
             <a class="btn" href="materials/Memoire_M1.pdf" download data-i18n="download">Télécharger</a>
           </div>
@@ -379,7 +385,7 @@
                data-i18n-attr="aria-label:open_on_github" aria-label="Ouvrir sur GitHub">
               <img data-src-light="assets/github-light.png" data-src-dark="assets/github-dark.png" src="assets/github-light.png" alt="GitHub">
             </a>
-            <a class="btn" href="#" data-i18n="demo">Démo :)</a>
+            
           </div>
         </div>
       </div>
@@ -442,7 +448,7 @@
           <h3 data-i18n="edu_item2_title">Réorientation vers les mathématiques appliquées</h3>
           <p data-i18n="edu_item2_sub">Université de Montpellier · 2024–2025</p>
           <ul>
-            <li data-i18n="edu_item2_li1"><strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des millieux continues · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle</li>
+            <li data-i18n="edu_item2_li1"><strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des milieux continus · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle</li>
             <li data-i18n="edu_item2_li2"><strong>Semestre 1, M2 Mathématiques fondamentales</strong>  : Géométrie différentielle · Topologie algébrique · Géométrie algébrique</li>
           </ul>
         </div>
@@ -452,7 +458,7 @@
           <ul>
             <li data-i18n="edu_item3_li1">UEs : Préparation écrit/oral</li>
             <li data-i18n="edu_item3_li2">Option C Algèbre & calcul formel (SageMath) · Projet (développements)</li>
-            <li data-i18n="edu_item3_li3">Admissible à L' Agrégation de Mathématiques</li>
+            <li data-i18n="edu_item3_li3">Admissible à l’agrégation de Mathématiques</li>
           </ul>
         </div>
         <div class="t-item">
@@ -460,7 +466,7 @@
           <p data-i18n="edu_item4_sub">Université de Montpellier · 2022–2023</p>
           <ul>
             <li data-i18n="edu_item4_li1">Groupes & géométrie · Algèbre 1–2 · Analyse fonctionnelle · Analyse complexe & Topologie · Géométrie différentielle · Groupes & algèbres de Lie</li>
-            <li data-i18n="edu_item4_li2">TER (mémoire) : Théoreme de Kuratowski et conjecture de Heawood</li>
+            <li data-i18n="edu_item4_li2">TER (mémoire) : Théorème de Kuratowski et conjecture de Heawood</li>
           </ul>
         </div>
         <div class="t-item">
@@ -469,7 +475,7 @@
           <ul>
             <li data-i18n="edu_item5_li1"><strong>L3</strong> : Groupes & anneaux 1 · Calcul différentiel & EDO · Mesure–Intégration–Fourier · Topologie · Analyse complexe · Analyse numérique des EDP</li> 
             <li data-i18n="edu_item5_li2"><em>options</em> : Groupes & anneaux 2 · Optimisation convexe</li>
-            <li data-i18n="edu_item5_li3">CUPGE maths/physique (L1–L2)</li> : Eletromagnétisme · Mécanique du solide indéformable
+            <li data-i18n="edu_item5_li3">CUPGE maths/physique (L1–L2) : Électromagnétisme · Mécanique du solide indéformable
           </ul>
         </div>
         <div class="t-item">
@@ -530,15 +536,15 @@
         projects_desc: "Une courte sélection de travaux scolaires et personnels.",
         project1_img_alt: "Aperçu du projet 1",
         project1_title: "Calculs de positionnements à partir d’anciennes données topographiques à Gabian (Hérault)",
-        project1_desc: "Des fouilles ulterieures ont été faites aux coordonnées calculées et ont confirmées le site de fouille",
+        project1_desc: "Des fouilles ultérieures ont été faites aux coordonnées calculées et ont confirmé le site de fouille",
         project1_tag1: "Topographie",
         project1_tag2: "Géometrie",
-        project1_tag3: "Science de l'Homme et Société",
+        project1_tag3: "Sciences de l’Homme et de la Société",
         open_on_hal: "Ouvrir sur HAL",
         hal_alt: "HAL — science ouverte",
         project2_img_alt: "Aperçu du projet 2",
-        project2_title: "Théoreme de Kuratowski et conjecture de Heawood",
-        project2_desc: "Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de kuratowski à été traité rapidemment on a alors ajouté la conjecture de Heawood, elle est cependant incomplète",
+        project2_title: "Théorème de Kuratowski et conjecture de Heawood",
+        project2_desc: "Mémoire de M1 Mathématiques fondamentales réalisée en binôme. Le Théorème de Kuratowski à été traité rapidement on a alors ajouté la conjecture de Heawood, elle est cependant incomplète",
         project2_tag1: "Théories des graphes",
         project3_img_alt: "Capture du projet 3",
         project3_title: "Site web portfolio minimal",
@@ -571,22 +577,22 @@
         edu_item1_li2: "Stage ",
         edu_item2_title: "Réorientation vers les mathématiques appliquées",
         edu_item2_sub: "Université de Montpellier · 2024–2025",
-        edu_item2_li1: "<strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des millieux continues · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle",
+        edu_item2_li1: "<strong>Semestre 2, M1 MANU</strong> : Analyse des EDP 1–2 · Analyse Numérique 1–3 · Mécanique des milieux continus · Mécanique des fluides · Programmation 1 (C++) · Géométrie différentielle",
         edu_item2_li2: "<strong>Semestre 1, M2 Mathématiques fondamentales</strong>  : Géométrie différentielle · Topologie algébrique · Géométrie algébrique",
         edu_item3_title: "Préparation à l’agrégation — M2",
         edu_item3_sub: "Université de Montpellier · 2023–2024",
         edu_item3_li1: "UEs : Préparation écrit/oral",
         edu_item3_li2: "Option C Algèbre & calcul formel (SageMath) · Projet (développements)",
-        edu_item3_li3: "Admissible à L' Agrégation de Mathématiques",
+        edu_item3_li3: "Admissible à l’agrégation de Mathématiques",
         edu_item4_title: "Mathématiques fondamentales — M1",
         edu_item4_sub: "Université de Montpellier · 2022–2023",
         edu_item4_li1: "Groupes & géométrie · Algèbre 1–2 · Analyse fonctionnelle · Analyse complexe & Topologie · Géométrie différentielle · Groupes & algèbres de Lie",
-        edu_item4_li2: "TER (mémoire) : Théoreme de Kuratowski et conjecture de Heawood",
+        edu_item4_li2: "TER (mémoire) : Théorème de Kuratowski et conjecture de Heawood",
         edu_item5_title: "Licence de mathématiques",
         edu_item5_sub: "Université de Montpellier · 2019–2022",
         edu_item5_li1: "<strong>L3</strong> : Groupes & anneaux 1 · Calcul différentiel & EDO · Mesure–Intégration–Fourier · Topologie · Analyse complexe · Analyse numérique des EDP",
         edu_item5_li2: "<em>options</em> : Groupes & anneaux 2 · Optimisation convexe",
-        edu_item5_li3: "CUPGE maths/physique (L1–L2)</li> : Eletromagnétisme · Mécanique du solide indéformable",
+        edu_item5_li3: "CUPGE maths/physique (L1–L2) : Électromagnétisme · Mécanique du solide indéformable",
         edu_item6_title: "Baccalauréat scientifique — Lycée Frédéric Bazille",
         edu_item6_sub: "Montpellier · 2018",
         edu_item6_li1: "Spécialité mathématiques, mention AB",
@@ -685,7 +691,7 @@
         edu_item5_sub: "University of Montpellier · 2019–2022",
         edu_item5_li1: "<strong>Year 3 (L3)</strong>: Groups & rings 1 · Differential calculus & ODEs · Measure–Integration–Fourier · Topology · Complex analysis · Numerical analysis of PDEs",
         edu_item5_li2: "<em>electives</em>: Groups & rings 2 · Convex optimization",
-        edu_item5_li3: "CUPGE maths/physics (L1–L2)</li>: Electromagnetism · Rigid body mechanics",
+        edu_item5_li3: "CUPGE maths/physics (L1–L2): Electromagnetism · Rigid body mechanics",
         edu_item6_title: "Science Baccalaureate — Lycée Frédéric Bazille",
         edu_item6_sub: "Montpellier · 2018",
         edu_item6_li1: "Mathematics specialization, honors AB",
@@ -774,21 +780,20 @@
 (function(){
   function toLarge(details){
     const sum = details.querySelector('summary');
-    const thumb = sum && sum.querySelector('.proj-thumb');
     const slot = details.querySelector('.proj-body .col-img');
-    if(thumb && slot){
-      thumb.removeAttribute('width'); thumb.removeAttribute('height');
-      thumb.classList.add('as-large');
-      slot.prepend(thumb);
+    if(!sum || !slot) return;
+    let img = sum.querySelector('.proj-thumb') || details.querySelector('.proj-body .col-img .proj-thumb');
+    if(img){
+      img.classList.add('as-large');
+      slot.prepend(img);
     }
   }
   function toThumb(details){
     const sum = details.querySelector('summary');
-    const moved = details.querySelector('.proj-body .col-img .proj-thumb');
-    if(sum && moved){
-      moved.classList.remove('as-large');
-      moved.setAttribute('width','72'); moved.setAttribute('height','48');
-      sum.insertBefore(moved, sum.firstChild);
+    const img = details.querySelector('.proj-body .col-img .proj-thumb');
+    if(sum && img){
+      img.classList.remove('as-large');
+      sum.insertBefore(img, sum.firstChild);
     }
   }
   document.querySelectorAll('.proj-MIX2 .proj-item').forEach((d)=>{
@@ -798,7 +803,6 @@
     });
   });
 })();
-
 </script>
 <script>
 (function(){
