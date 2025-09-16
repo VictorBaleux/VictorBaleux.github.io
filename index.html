@@ -306,11 +306,45 @@
   <h2 data-i18n="projects_title">Projets sélectionnés</h2>
   <div class="proj-accordion proj-MIX2" data-anim="zoom">
 
+
         <!-- Nouveau projet (ouvert) -->
         <details class="proj-item" open>
           <summary>
             <img class="proj-thumb"
-                 src="https://opengraph.githubassets.com/1/VictorBaleux/Estimations-a-posteriori"
+                 src="assets/convergence.png"
+                 alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
+            <div class="proj-head">
+              <span class="proj-title">Estimations a posteriori (Séance 2)</span>
+              <span class="proj-meta">
+                <time class="proj-date" datetime="2025">2025</time>
+                <span>PDE · Python · NumPy/Matplotlib</span>
+              </span>
+            </div>
+          </summary>
+          <div class="proj-body proj-split">
+            <div class="col col-img" aria-hidden="true"></div>
+            <div class="col col-text">
+              <p>
+                Implémentation en Python d’un schéma explicite pour une équation ADRS 1D avec solution exacte fabriquée.
+                Extension en 2D avec éléments finis P1 pour estimer les erreurs et vérifier les ordres de convergence.
+                Les codes confirment les résultats théoriques (O(h) en H1 et O(h²) en L2).
+              </p>
+              <div class="proj-actions">
+                <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_2" target="_blank" rel="noopener">
+                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                </a>
+                <a class="btn" href="materials/Estimation_a_posteriori__SC_2.pdf" download data-i18n="download">Télécharger rapport</a>
+              </div>
+            </div>
+          </div>
+        </details>
+
+
+        <!-- projet seance 1 -->
+        <details class="proj-item">
+          <summary>
+            <img class="proj-thumb"
+                 src="assets/Convection_Diffusion_Reaction_1D.png"
                  alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
             <div class="proj-head">
               <span class="proj-title">Estimations a posteriori (Séance 2)</span>
@@ -363,6 +397,7 @@
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_1" target="_blank" rel="noopener">
                   <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
                 </a>
+                <a class="btn" href="materials/Estimation_a_posteriori__SC_1.pdf" download data-i18n="download">Télécharger rapport</a>
               </div>
             </div>
           </div>
