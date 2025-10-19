@@ -308,8 +308,41 @@
 
 
         
-        <!-- Estimations a posteriori (Séance 5) -->
+        <!-- Estimations a posteriori (Séance 6) -->
         <details class="proj-item" open>
+          <summary>
+            <img class="proj-thumb"
+                 src="assets/raffinage.png"
+                 alt="Distribution de maillage h — Séance 6">
+            <div class="proj-head">
+              <span class="proj-title">Estimations a posteriori (Séance 6)</span>
+              <span class="proj-meta">
+                <time class="proj-date" datetime="2025">2025</time>
+                <span>PDE · Python · NumPy/Matplotlib</span>
+              </span>
+            </div>
+          </summary>
+          <div class="proj-body proj-split">
+            <div class="col col-img" aria-hidden="true"></div>
+            <div class="col col-text">
+              <p>
+                Optimisation d’un problème ADRS 1D stationnaire en exploitant la linéarité de l’état vis-à-vis des contrôles&nbsp;; écriture quadratique de <span>J(x) = ½&nbsp;xᵀ A x − bᵀ x + c</span> et condition du premier ordre pour le contrôle optimal.
+                Calcul précis de <span>A<sub>ij</sub> = ⟨u<sub>i</sub>, u<sub>j</sub>⟩</span> et <span>b<sub>i</sub> = ⟨u<sub>i</sub>, u<sub>des</sub> − u<sub>0</sub>⟩</span> lorsque les champs vivent sur des maillages adaptés différents&nbsp;: interpolation croisée sur une grille commune et quadrature trapézoïdale adaptative avec tolérances serrées.
+                Chaîne numérique&nbsp;: pseudo-temps explicite, <strong>h-adaptation</strong> guidée par un indicateur de courbure <span>|u<sub>xx</sub>|</span>, construction des bases <span>{u<sub>i</sub>}</span>, assemblage de <span>(A, b)</span>, résolution <span>A&nbsp;x = b</span>&nbsp;; validation par comparaison avec une référence sur maillage fixe fin.
+                Résultats et visus&nbsp;: surface <em>J(x<sub>1</sub>, x<sub>2</sub>)</em>, étude de raffinement <span>h ↦ J(X<sup>*</sup>)</span> et <span>∥X<sup>*</sup> − X<sub>opt</sub><sup>true</sup>∥</span>, cas cible uniforme <code>u<sub>des</sub> ≡ 1</code>&nbsp;; écarts faibles entre l’approche «&nbsp;adaptation + intégration croisée&nbsp;» et la référence.
+              </p>
+              <div class="proj-actions">
+                <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_6" target="_blank" rel="noopener">
+                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                </a>
+                <a class="btn" href="materials/Estimation_a_posteriori__S6.pdf" download data-i18n="download">Télécharger rapport</a>
+              </div>
+            </div>
+          </div>
+        </details>
+        
+        <!-- Estimations a posteriori (Séance 5) -->
+        <details class="proj-item">
           <summary>
             <img class="proj-thumb"
                  src="assets/h_distribution.png"
@@ -336,11 +369,71 @@
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_5" target="_blank" rel="noopener">
                   <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
                 </a>
-                <a class="btn" href="materials/Estimation_a_posteriori__SC_5.pdf" download data-i18n="download">Télécharger rapport</a>
+                <a class="btn" href="materials/Estimation_a_posteriori__S5.pdf" download data-i18n="download">Télécharger rapport</a>
               </div>
             </div>
           </div>
         </details>
+
+<!-- Estimations a posteriori (Séance 4) -->
+<details class="proj-item" id="tp-s4">
+  <summary>
+    <img
+      class="proj-thumb"
+      src="assets/contraction_compare.png"
+      alt="Distribution de maillage h — Séance 4"
+      loading="lazy"
+      decoding="async"
+    >
+    <div class="proj-head">
+      <span class="proj-title">Estimations a posteriori (Séance 4)</span>
+      <span class="proj-meta">
+        <time class="proj-date" datetime="2025-01-01">2025</time>
+        <span>Python · estimation a posteriori · adaptation de maillage · métrique locale · convection–diffusion · loi RMS</span>
+      </span>
+    </div>
+  </summary>
+
+  <div class="proj-body proj-split" aria-labelledby="tp-s4-title">
+    <div class="col col-img" aria-hidden="true"></div>
+
+    <div class="col col-text">
+      <p>
+        Ce TP explore l’<strong>adaptation de maillage en 1D</strong> pour une équation de
+        <strong>convection–diffusion</strong>, à partir d’une <strong>estimation a posteriori</strong>.
+        Calcul d’un indicateur basé sur la dérivée seconde
+        <code>T<sub>xx</sub> ≈ u''(x)</code>, construction d’une <em>métrique locale</em>
+        <code>λ(x)</code> et reconstruction du maillage avec <code>h(x) ≈ 1/√λ(x)</code>.      
+        Comparaison de trois <em>lois de métrique</em> : finale instantanée, moyenne temporelle et RMS.        
+        Étude de la relation <code>N<sub>X</sub>(ε)</code> pour relier coût maillage et erreur.        
+        Critères d’arrêt : stabilité de <code>N<sub>X</sub></code> et cible en norme <code>L²</code>;
+        vérification par <em>contraction</em> sur un maillage de fond.
+      </p>
+      <div class="proj-actions">
+        <a
+          class="btn"
+          href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_4"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Ouvrir le dépôt GitHub de la Séance 4 dans un nouvel onglet"
+        >
+          <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+        </a>
+
+        <a
+          class="btn"
+          href="materials/Estimation_a_posteriori__S4.pdf"
+          download="Estimation_a_posteriori__S4.pdf"
+          type="application/pdf"
+          aria-label="Télécharger le rapport PDF de la Séance 4"
+          data-i18n="download"
+        >
+          Télécharger le rapport
+        </a>
+      </div>
+    </div>
+  </div>
+</details>
 
         <!-- Estimations a posteriori (Séance 3) -->
         <details class="proj-item">
@@ -370,7 +463,7 @@
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_3" target="_blank" rel="noopener">
                   <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
                 </a>
-                <a class="btn" href="materials/Estimation_a_posteriori__SC_3.pdf" download data-i18n="download">Télécharger rapport</a>
+                <a class="btn" href="materials/Estimation_a_posteriori__S3.pdf" download data-i18n="download">Télécharger rapport</a>
               </div>
             </div>
           </div>
@@ -402,7 +495,7 @@
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_2" target="_blank" rel="noopener">
                   <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
                 </a>
-                <a class="btn" href="materials/Estimation_a_posteriori__SC_2.pdf" download data-i18n="download">Télécharger rapport</a>
+                <a class="btn" href="materials/Estimation_a_posteriori__S2.pdf" download data-i18n="download">Télécharger rapport</a>
               </div>
             </div>
           </div>
@@ -436,7 +529,7 @@
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_1" target="_blank" rel="noopener">
                   <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
                 </a>
-                <a class="btn" href="materials/Estimation_a_posteriori__SC_1.pdf" download data-i18n="download">Télécharger rapport</a>
+                <a class="btn" href="materials/Estimation_a_posteriori__S1.pdf" download data-i18n="download">Télécharger rapport</a>
               </div>
             </div>
           </div>
