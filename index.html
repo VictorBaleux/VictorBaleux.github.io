@@ -307,8 +307,43 @@
   <div class="proj-accordion proj-MIX2" data-anim="zoom">
 
 
-        <!-- Estimations a posteriori (Séance 3) -->
+        
+        <!-- Estimations a posteriori (Séance 5) -->
         <details class="proj-item" open>
+          <summary>
+            <img class="proj-thumb"
+                 src="assets/h_distribution.png"
+                 alt="Distribution de maillage h — Séance 5">
+            <div class="proj-head">
+              <span class="proj-title">Estimations a posteriori (Séance 5)</span>
+              <span class="proj-meta">
+                <time class="proj-date" datetime="2025">2025</time>
+                <span>PDE · Python · NumPy/Matplotlib</span>
+              </span>
+            </div>
+          </summary>
+          <div class="proj-body proj-split">
+            <div class="col col-img" aria-hidden="true"></div>
+            <div class="col col-text">
+              <p>
+                Implémentation et validation d’un solveur ADR 1D instationnaire avec <em>solution fabriquée</em> (MMS).
+                Comparaison d’intégrateurs de Runge–Kutta (ordre&nbsp;1→4) au point milieu&nbsp;: stabilité (CFL) et sensibilité au pas de temps.
+                Conception d’un estimateur d’erreur résiduel pour l’adaptation de maillage (<strong>h‑adaptation</strong>), 
+                visualisation de la distribution optimale <code>h(x)</code> et comparaison <em>maillage uniforme</em> vs <em>maillage adapté</em>.
+                Évaluation par erreurs L<sub>2</sub>/H<sub>1</sub>, ordre observé de convergence et <em>indice d’efficacité</em> de l’estimateur.
+              </p>
+              <div class="proj-actions">
+                <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_5" target="_blank" rel="noopener">
+                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                </a>
+                <a class="btn" href="materials/Estimation_a_posteriori__SC_5.pdf" download data-i18n="download">Télécharger rapport</a>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Estimations a posteriori (Séance 3) -->
+        <details class="proj-item">
           <summary>
             <img class="proj-thumb"
                  src="assets/image_seance_3.png"
