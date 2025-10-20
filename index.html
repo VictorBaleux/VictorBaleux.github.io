@@ -313,19 +313,19 @@
           <summary>
             <img class="proj-thumb"
                  src="assets/raffinage.png"
-                 alt="Distribution de maillage h — Séance 6">
+                 data-i18n-attr="alt:s6_img_alt" alt="Distribution de maillage h — Séance 6">
             <div class="proj-head">
-              <span class="proj-title">Estimations a posteriori (Séance 6)</span>
+              <span class="proj-title" data-i18n="s6_title">Estimations a posteriori (Séance 6)</span>
               <span class="proj-meta">
                 <time class="proj-date" datetime="2025">2025</time>
-                <span>PDE · Python · NumPy/Matplotlib</span>
+                <span>ADRS 1D stationnaire · Contrôle optimal · Intégration L2 inter-maillages · Maillage adapté & interpolation</span>
               </span>
             </div>
           </summary>
           <div class="proj-body proj-split">
             <div class="col col-img" aria-hidden="true"></div>
             <div class="col col-text">
-              <p>
+              <p data-i18n="s6_desc">
                 Optimisation d’un problème ADRS 1D stationnaire en exploitant la linéarité de l’état vis-à-vis des contrôles&nbsp;; écriture quadratique de <span>J(x) = ½&nbsp;xᵀ A x − bᵀ x + c</span> et condition du premier ordre pour le contrôle optimal.
                 Calcul précis de <span>A<sub>ij</sub> = ⟨u<sub>i</sub>, u<sub>j</sub>⟩</span> et <span>b<sub>i</sub> = ⟨u<sub>i</sub>, u<sub>des</sub> − u<sub>0</sub>⟩</span> lorsque les champs vivent sur des maillages adaptés différents&nbsp;: interpolation croisée sur une grille commune et quadrature trapézoïdale adaptative avec tolérances serrées.
                 Chaîne numérique&nbsp;: pseudo-temps explicite, <strong>h-adaptation</strong> guidée par un indicateur de courbure <span>|u<sub>xx</sub>|</span>, construction des bases <span>{u<sub>i</sub>}</span>, assemblage de <span>(A, b)</span>, résolution <span>A&nbsp;x = b</span>&nbsp;; validation par comparaison avec une référence sur maillage fixe fin.
@@ -333,10 +333,10 @@
               </p>
               <div class="proj-actions">
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_6" target="_blank" rel="noopener">
-                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                  <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
                 </a>
                 <a class="btn" href="materials/Estimation_a_posteriori__S6.pdf" download data-i18n="download">Télécharger rapport</a>
-              </div>
+              
             </div>
           </div>
         </details>
@@ -346,19 +346,19 @@
           <summary>
             <img class="proj-thumb"
                  src="assets/h_distribution.png"
-                 alt="Distribution de maillage h — Séance 5">
+                 data-i18n-attr="alt:s5_img_alt" alt="Distribution de maillage h — Séance 5">
             <div class="proj-head">
-              <span class="proj-title">Estimations a posteriori (Séance 5)</span>
+              <span class="proj-title" data-i18n="s5_title">Estimations a posteriori (Séance 5)</span>
               <span class="proj-meta">
                 <time class="proj-date" datetime="2025">2025</time>
-                <span>PDE · Python · NumPy/Matplotlib</span>
+                <span>ADR 1D instationnaire · RK1–RK4 · Erreur L2 · Adaptation de maillage</span>
               </span>
             </div>
           </summary>
           <div class="proj-body proj-split">
             <div class="col col-img" aria-hidden="true"></div>
             <div class="col col-text">
-              <p>
+              <p data-i18n="s5_desc">
                 Implémentation et validation d’un solveur ADR 1D instationnaire avec <em>solution fabriquée</em> (MMS).
                 Comparaison d’intégrateurs de Runge–Kutta (ordre&nbsp;1→4) au point milieu&nbsp;: stabilité (CFL) et sensibilité au pas de temps.
                 Conception d’un estimateur d’erreur résiduel pour l’adaptation de maillage (<strong>h‑adaptation</strong>), 
@@ -367,10 +367,10 @@
               </p>
               <div class="proj-actions">
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_5" target="_blank" rel="noopener">
-                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                  <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
                 </a>
                 <a class="btn" href="materials/Estimation_a_posteriori__S5.pdf" download data-i18n="download">Télécharger rapport</a>
-              </div>
+              
             </div>
           </div>
         </details>
@@ -381,15 +381,15 @@
     <img
       class="proj-thumb"
       src="assets/contraction_compare.png"
-      alt="Distribution de maillage h — Séance 4"
+      data-i18n-attr="alt:s4_img_alt" alt="Distribution de maillage h — Séance 4"
       loading="lazy"
       decoding="async"
     >
     <div class="proj-head">
-      <span class="proj-title">Estimations a posteriori (Séance 4)</span>
+      <span class="proj-title" data-i18n="s4_title">Estimations a posteriori (Séance 4)</span>
       <span class="proj-meta">
         <time class="proj-date" datetime="2025-01-01">2025</time>
-        <span>Python · estimation a posteriori · adaptation de maillage · métrique locale · convection–diffusion · loi RMS</span>
+        <span>Python · estimation a posteriori · adaptation de maillage · métrique locale · convection–diffusion · loi RMS  </span>
       </span>
     </div>
   </summary>
@@ -398,7 +398,7 @@
     <div class="col col-img" aria-hidden="true"></div>
 
     <div class="col col-text">
-      <p>
+      <p data-i18n="s4_desc">
         Ce TP explore l’<strong>adaptation de maillage en 1D</strong> pour une équation de
         <strong>convection–diffusion</strong>, à partir d’une <strong>estimation a posteriori</strong>.
         Calcul d’un indicateur basé sur la dérivée seconde
@@ -417,7 +417,7 @@
           rel="noopener noreferrer"
           aria-label="Ouvrir le dépôt GitHub de la Séance 4 dans un nouvel onglet"
         >
-          <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+          <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
         </a>
 
         <a
@@ -430,7 +430,7 @@
         >
           Télécharger le rapport
         </a>
-      </div>
+      
     </div>
   </div>
 </details>
@@ -440,19 +440,19 @@
           <summary>
             <img class="proj-thumb"
                  src="assets/image_seance_3.png"
-                 alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
+                 data-i18n-attr="alt:s3_img_alt" alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
             <div class="proj-head">
-              <span class="proj-title">Estimations a posteriori (Séance 3)</span>
+              <span class="proj-title" data-i18n="s3_title">Estimations a posteriori (Séance 3)</span>
               <span class="proj-meta">
                 <time class="proj-date" datetime="2025">2025</time>
-                <span>PDE · Python · NumPy/Matplotlib</span>
+                <span>Estimation a posteriori · Intégration numérique · Vitesse de convergence · Raffinement itératif non-uniforme</span>
               </span>
             </div>
           </summary>
           <div class="proj-body proj-split">
             <div class="col col-img" aria-hidden="true"></div>
             <div class="col col-text">
-                <p>
+                <p data-i18n="s3_desc">
                   Comparaison de plusieurs méthodes d’intégration numérique (Riemann, Lebesgue, Monte-Carlo) 
                   sur deux fonctions tests, l’une régulière et l’autre singulière.  
                   Les résultats mettent en évidence la rapidité de Riemann sur les fonctions lisses, 
@@ -461,10 +461,10 @@
                 </p>
               <div class="proj-actions">
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_3" target="_blank" rel="noopener">
-                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                  <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
                 </a>
                 <a class="btn" href="materials/Estimation_a_posteriori__S3.pdf" download data-i18n="download">Télécharger rapport</a>
-              </div>
+              
             </div>
           </div>
         </details>
@@ -474,29 +474,29 @@
           <summary>
             <img class="proj-thumb"
                  src="assets/convergence.png"
-                 alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
+                 data-i18n-attr="alt:s2_img_alt" alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
             <div class="proj-head">
-              <span class="proj-title">Estimations a posteriori (Séance 2)</span>
+              <span class="proj-title" data-i18n="s2_title">Estimations a posteriori (Séance 2)</span>
               <span class="proj-meta">
                 <time class="proj-date" datetime="2025">2025</time>
-                <span>PDE · Python · NumPy/Matplotlib</span>
+                <span>Estimation a posteriori · Éléments finis P1 · ADRS stationnaire 2D · Erreurs L2 & H1</span>
               </span>
             </div>
           </summary>
           <div class="proj-body proj-split">
             <div class="col col-img" aria-hidden="true"></div>
             <div class="col col-text">
-              <p>
+              <p data-i18n="s2_desc">
                 Implémentation en Python d’un schéma explicite pour une équation ADRS 1D avec solution exacte fabriquée.
                 Extension en 2D avec éléments finis P1 pour estimer les erreurs et vérifier les ordres de convergence.
                 Les codes confirment les résultats théoriques (O(h) en H1 et O(h²) en L2).
               </p>
               <div class="proj-actions">
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_2" target="_blank" rel="noopener">
-                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                  <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
                 </a>
                 <a class="btn" href="materials/Estimation_a_posteriori__S2.pdf" download data-i18n="download">Télécharger rapport</a>
-              </div>
+              
             </div>
           </div>
         </details>
@@ -508,29 +508,29 @@
           <summary>
             <img class="proj-thumb"
                  src="assets/Image_seance_1.png"
-                 alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
+                 data-i18n-attr="alt:s1_img_alt" alt="Aperçu GitHub du dépôt Estimations-a-posteriori">
             <div class="proj-head">
-              <span class="proj-title">Estimations a posteriori (Séance 1)</span>
+              <span class="proj-title" data-i18n="s1_title">Estimations a posteriori (Séance 1)</span>
               <span class="proj-meta">
                 <time class="proj-date" datetime="2025">2025</time>
-                <span>PDE · Python · NumPy/Matplotlib</span>
+                <span>Estimation a posteriori · Méthode d’Euler explicite · Erreurs L2 & ordre de convergence · Convection–diffusion · Différences finies & stabilité</span>
               </span>
             </div>
           </summary>
           <div class="proj-body proj-split">
             <div class="col col-img" aria-hidden="true"></div>
             <div class="col col-text">
-              <p>
+              <p data-i18n="s1_desc">
                 Mise en place en <strong>Python</strong> d’outils d’<em>estimation a posteriori</em> pour un problème
                 1D de convection–diffusion&nbsp;: scripts/notebooks pour calculer l’erreur numérique,
                 tracer des <em>courbes de convergence</em> et explorer des stratégies de raffinement de maillage.
               </p>
               <div class="proj-actions">
                 <a class="btn" href="https://github.com/VictorBaleux/Estimations-a-posteriori/tree/main/Seance_1" target="_blank" rel="noopener">
-                  <img src="github.png" alt="" style="height:18px;width:auto"> Voir sur GitHub
+                  <img src="github.png" alt="" style="height:18px;width:auto"> <span data-i18n="open_on_github">Voir sur GitHub</span>
                 </a>
                 <a class="btn" href="materials/Estimation_a_posteriori__S1.pdf" download data-i18n="download">Télécharger rapport</a>
-              </div>
+              
             </div>
           </div>
         </details>
@@ -833,6 +833,24 @@
         project3_date: "2025",
         project1_tags: "Topographie · Géométrie · SHS",
         project2_tags: "Graphes · LaTeX",
+        s1_title: "Estimations a posteriori (S\u00e9ance 1)",
+        s2_title: "Estimations a posteriori (S\u00e9ance 2)",
+        s3_title: "Estimations a posteriori (S\u00e9ance 3)",
+        s4_title: "Estimations a posteriori (S\u00e9ance 4)",
+        s5_title: "Estimations a posteriori (S\u00e9ance 5)",
+        s6_title: "Estimations a posteriori (S\u00e9ance 6)",
+        s1_desc: "Mise en place en <strong>Python</strong> d\u2019outils d\u2019<em>estimation a posteriori</em> pour un probl\u00e8me\n                1D de convection\u2013diffusion&nbsp;: scripts/notebooks pour calculer l\u2019erreur num\u00e9rique,\n                tracer des <em>courbes de convergence</em> et explorer des strat\u00e9gies de raffinement de maillage.",
+        s2_desc: "Impl\u00e9mentation en Python d\u2019un sch\u00e9ma explicite pour une \u00e9quation ADRS 1D avec solution exacte fabriqu\u00e9e.\n                Extension en 2D avec \u00e9l\u00e9ments finis P1 pour estimer les erreurs et v\u00e9rifier les ordres de convergence.\n                Les codes confirment les r\u00e9sultats th\u00e9oriques (O(h) en H1 et O(h\u00b2) en L2).",
+        s3_desc: "Comparaison de plusieurs m\u00e9thodes d\u2019int\u00e9gration num\u00e9rique (Riemann, Lebesgue, Monte-Carlo) \n                  sur deux fonctions tests, l\u2019une r\u00e9guli\u00e8re et l\u2019autre singuli\u00e8re.  \n                  Les r\u00e9sultats mettent en \u00e9vidence la rapidit\u00e9 de Riemann sur les fonctions lisses, \n                  la robustesse des approches de Lebesgue face aux singularit\u00e9s \n                  et la g\u00e9n\u00e9ralit\u00e9 de Monte-Carlo malgr\u00e9 sa lenteur.",
+        s4_desc: "Ce TP explore l\u2019<strong>adaptation de maillage en 1D</strong> pour une \u00e9quation de\n        <strong>convection\u2013diffusion</strong>, \u00e0 partir d\u2019une <strong>estimation a posteriori</strong>.\n        Calcul d\u2019un indicateur bas\u00e9 sur la d\u00e9riv\u00e9e seconde\n        <code>T<sub>xx</sub> \u2248 u''(x)</code>, construction d\u2019une <em>m\u00e9trique locale</em>\n        <code>\u03bb(x)</code> et reconstruction du maillage avec <code>h(x) \u2248 1/\u221a\u03bb(x)</code>.      \n        Comparaison de trois <em>lois de m\u00e9trique</em> : finale instantan\u00e9e, moyenne temporelle et RMS.        \n        \u00c9tude de la relation <code>N<sub>X</sub>(\u03b5)</code> pour relier co\u00fbt maillage et erreur.        \n        Crit\u00e8res d\u2019arr\u00eat : stabilit\u00e9 de <code>N<sub>X</sub></code> et cible en norme <code>L\u00b2</code>;\n        v\u00e9rification par <em>contraction</em> sur un maillage de fond.",
+        s5_desc: "Impl\u00e9mentation et validation d\u2019un solveur ADR 1D instationnaire avec <em>solution fabriqu\u00e9e</em> (MMS).\n                Comparaison d\u2019int\u00e9grateurs de Runge\u2013Kutta (ordre&nbsp;1\u21924) au point milieu&nbsp;: stabilit\u00e9 (CFL) et sensibilit\u00e9 au pas de temps.\n                Conception d\u2019un estimateur d\u2019erreur r\u00e9siduel pour l\u2019adaptation de maillage (<strong>h\u2011adaptation</strong>), \n                visualisation de la distribution optimale <code>h(x)</code> et comparaison <em>maillage uniforme</em> vs <em>maillage adapt\u00e9</em>.\n                \u00c9valuation par erreurs L<sub>2</sub>/H<sub>1</sub>, ordre observ\u00e9 de convergence et <em>indice d\u2019efficacit\u00e9</em> de l\u2019estimateur.",
+        s6_desc: "Optimisation d\u2019un probl\u00e8me ADRS 1D stationnaire en exploitant la lin\u00e9arit\u00e9 de l\u2019\u00e9tat vis-\u00e0-vis des contr\u00f4les&nbsp;; \u00e9criture quadratique de <span>J(x) = \u00bd&nbsp;x\u1d40 A x \u2212 b\u1d40 x + c</span> et condition du premier ordre pour le contr\u00f4le optimal.\n                Calcul pr\u00e9cis de <span>A<sub>ij</sub> = \u27e8u<sub>i</sub>, u<sub>j</sub>\u27e9</span> et <span>b<sub>i</sub> = \u27e8u<sub>i</sub>, u<sub>des</sub> \u2212 u<sub>0</sub>\u27e9</span> lorsque les champs vivent sur des maillages adapt\u00e9s diff\u00e9rents&nbsp;: interpolation crois\u00e9e sur une grille commune et quadrature trap\u00e9zo\u00efdale adaptative avec tol\u00e9rances serr\u00e9es.\n                Cha\u00eene num\u00e9rique&nbsp;: pseudo-temps explicite, <strong>h-adaptation</strong> guid\u00e9e par un indicateur de courbure <span>|u<sub>xx</sub>|</span>, construction des bases <span>{u<sub>i</sub>}</span>, assemblage de <span>(A, b)</span>, r\u00e9solution <span>A&nbsp;x = b</span>&nbsp;; validation par comparaison avec une r\u00e9f\u00e9rence sur maillage fixe fin.\n                R\u00e9sultats et visus&nbsp;: surface <em>J(x<sub>1</sub>, x<sub>2</sub>)</em>, \u00e9tude de raffinement <span>h \u21a6 J(X<sup>*</sup>)</span> et <span>\u2225X<sup>*</sup> \u2212 X<sub>opt</sub><sup>true</sup>\u2225</span>, cas cible uniforme <code>u<sub>des</sub> \u2261 1</code>&nbsp;; \u00e9carts faibles entre l\u2019approche \u00ab&nbsp;adaptation + int\u00e9gration crois\u00e9e&nbsp;\u00bb et la r\u00e9f\u00e9rence.",
+        s6_img_alt: "Distribution de maillage h \u2014 S\u00e9ance 6",
+        s5_img_alt: "Distribution de maillage h \u2014 S\u00e9ance 5",
+        s4_img_alt: "Distribution de maillage h \u2014 S\u00e9ance 4",
+        s3_img_alt: "Aper\u00e7u GitHub du d\u00e9p\u00f4t Estimations-a-posteriori",
+        s2_img_alt: "Aper\u00e7u GitHub du d\u00e9p\u00f4t Estimations-a-posteriori",
+        s1_img_alt: "Aper\u00e7u GitHub du d\u00e9p\u00f4t Estimations-a-posteriori",
         project3_tags: "HTML · CSS · Accessibilité"
       },
       en: {
@@ -932,6 +950,24 @@
         project3_date: "2025",
         project1_tags: "Topography · Geometry · Humanities & Social Sciences",
         project2_tags: "Graph theory · LaTeX",
+        s6_title: "A posteriori estimates (Session 6)",
+        s6_img_alt: "h-mesh distribution \u2014 Session 6",
+        s6_desc: "Optimization of a stationary 1D ADRS problem by exploiting the linearity of the state with respect to the controls; quadratic form <span>J(x) = \u00bd&nbsp;x\u1d40 A x \u2212 b\u1d40 x + c</span> and first-order optimality condition. Accurate computation of <span>A<sub>ij</sub> = \u27e8u<sub>i</sub>, u<sub>j</sub>\u27e9</span> and <span>b<sub>i</sub> = \u27e8u<sub>i</sub>, u<sub>des</sub> \u2212 u<sub>0</sub>\u27e9</span> when the fields live on different adapted meshes: cross-interpolation onto a common grid and adaptive trapezoidal quadrature with tight tolerances. Pipeline: explicit pseudo-time, <strong>h-adaptation</strong> driven by a curvature indicator <span>|u<sub>xx</sub>|</span>, construction of the bases <span>{u<sub>i</sub>}</span>, assembly of <span>(A, b)</span>, solve <span>A&nbsp;x = b</span>; validation against a fine fixed-mesh reference. Results & visuals: surface <em>J(x<sub>1</sub>, x<sub>2</sub>)</em>, refinement study <span>h \u21a6 J(X<sup>*</sup>)</span> and <span>\u2225X<sup>*</sup> \u2212 X<sub>opt</sub><sup>true</sup>\u2225</span>, uniform target case <code>u<sub>des</sub> \u2261 1</code>; small deviations between the \u201cadaptation + cross-integration\u201d approach and the reference.",
+        s5_title: "A posteriori estimates (Session 5)",
+        s5_img_alt: "h-mesh distribution \u2014 Session 5",
+        s5_desc: "Implementation and validation of an unsteady 1D ADR solver using a <em>manufactured solution</em> (MMS). Comparison of Runge\u2013Kutta integrators (order&nbsp;1\u21924) at the midpoint: stability (CFL) and sensitivity to the time step. Design of a residual-based error estimator for mesh adaptation (<strong>h-adaptation</strong>), visualization of the optimal distribution <code>h(x)</code> and comparison <em>uniform mesh</em> vs <em>adapted mesh</em>. Assessment via L<sub>2</sub>/H<sub>1</sub> errors, observed order of convergence, and the estimator\u2019s <em>efficiency index</em>.",
+        s4_title: "A posteriori estimates (Session 4)",
+        s4_img_alt: "h-mesh distribution \u2014 Session 4",
+        s4_desc: "This lab explores <strong>1D mesh adaptation</strong> for a <strong>convection\u2013diffusion</strong> equation driven by an <strong>a posteriori estimate</strong>. We compute an indicator based on the second derivative <code>T<sub>xx</sub> \u2248 u''(x)</code>, build a <em>local metric</em> <code>\u03bb(x)</code>, and reconstruct the mesh with <code>h(x) \u2248 1/\u221a\u03bb(x)</code>. We compare three <em>metric laws</em>: instantaneous final, temporal average, and RMS. We study the relation <code>N<sub>X</sub>(\u03b5)</code> linking mesh cost to error. Stopping criteria: stability of <code>N<sub>X</sub></code> and an L<code>\u00b2</code> error target; verification via <em>contraction</em> on a background mesh.",
+        s3_title: "A posteriori estimates (Session 3)",
+        s3_img_alt: "GitHub preview of the Estimations-a-posteriori repository",
+        s3_desc: "Comparison of several numerical integration methods (Riemann, Lebesgue, Monte-Carlo) on two test functions\u2014one smooth, the other singular. The results highlight Riemann\u2019s speed on smooth functions, the robustness of Lebesgue-based approaches near singularities, and the generality of Monte-Carlo despite its slowness.",
+        s2_title: "A posteriori estimates (Session 2)",
+        s2_img_alt: "GitHub preview of the Estimations-a-posteriori repository",
+        s2_desc: "Python implementation of an explicit scheme for a 1D ADRS equation with a manufactured exact solution. Extension to 2D with P1 finite elements to estimate errors and verify convergence orders. The codes confirm the theoretical results (O(h) in H1 and O(h\u00b2) in L2).",
+        s1_title: "A posteriori estimates (Session 1)",
+        s1_img_alt: "GitHub preview of the Estimations-a-posteriori repository",
+        s1_desc: "<strong>Python</strong> tooling for <em>a posteriori error estimation</em> on a 1D convection\u2013diffusion problem: scripts/notebooks to compute the numerical error, plot <em>convergence curves</em>, and explore mesh-refinement strategies.",
         project3_tags: "HTML · CSS · Accessibility"
       }
     };
